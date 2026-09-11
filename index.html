@@ -972,6 +972,1560 @@ a{color:inherit;text-decoration:none}
   opacity:1;
   transform:translateY(0);
 }
+
+
+/* =========================================================
+   MOBILE — conservative version.
+   Same visual language as desktop, no structural redesign.
+   ========================================================= */
+.label-mobile{display:none}
+
+@media(max-width:640px){
+  :root{
+    --mobile-header:54px;
+    --mobile-pad:18px;
+  }
+
+  html{
+    scroll-snap-type:y mandatory;
+  }
+
+  /* Header */
+  .header-inner{
+    width:calc(100% - 28px);
+    height:var(--mobile-header);
+  }
+
+  .brand{
+    font-size:12px;
+  }
+
+  .menu-toggle{
+    display:block;
+    margin-left:auto;
+  }
+
+  .nav{
+    top:var(--mobile-header);
+  }
+
+  /* Hero */
+  .hero{
+    height:100svh;
+    min-height:100svh;
+    padding:
+      calc(var(--mobile-header) + 24px)
+      var(--mobile-pad)
+      56px;
+  }
+
+  .hero h1{
+    max-width:350px;
+    margin-inline:auto;
+    font-size:clamp(48px,15vw,64px);
+    line-height:.94;
+    letter-spacing:-.066em;
+  }
+
+  .hero-roles{
+    max-width:330px;
+    margin-top:20px;
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  .hero-scroll{
+    right:18px;
+    bottom:max(18px,env(safe-area-inset-bottom));
+    font-size:9px;
+  }
+
+  /* Second page: preserve the desktop idea — three vertical slices */
+  .showcase-panels{
+    width:100%;
+    height:100svh;
+    min-height:100svh;
+  }
+
+  .photo-strip{
+    --cut:19px;
+    --overlap:10px;
+    top:var(--mobile-header);
+    left:0;
+    width:100%;
+    height:calc(100svh - var(--mobile-header));
+    overflow:hidden;
+    display:flex;
+    flex-direction:row;
+    scroll-snap-type:none;
+  }
+
+  .photo-panel{
+    flex:0 0 calc(33.333333% + var(--overlap));
+    height:100%;
+    margin-right:calc(var(--overlap) * -1);
+    scroll-snap-align:none;
+  }
+
+  .photo-panel:first-child{
+    clip-path:polygon(
+      0 0,
+      100% 0,
+      calc(100% - var(--cut)) 100%,
+      0 100%
+    );
+  }
+
+  .photo-panel:not(:first-child):not(:last-child){
+    clip-path:polygon(
+      var(--cut) 0,
+      100% 0,
+      calc(100% - var(--cut)) 100%,
+      0 100%
+    );
+  }
+
+  .photo-panel:last-child{
+    clip-path:polygon(
+      var(--cut) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .photo-placeholder{
+    inset:-6px;
+    transform:scale(1.04);
+  }
+
+  .photo-panel::after{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,.08) 0%,
+        rgba(0,0,0,.10) 48%,
+        rgba(0,0,0,.30) 72%,
+        rgba(0,0,0,.75) 100%
+      );
+  }
+
+  /* Keep separators vector/crisp, just narrower on phone */
+  .panel-separator{
+    width:var(--cut);
+  }
+
+  .showcase-overlay{
+    top:var(--mobile-header);
+    left:0;
+    right:0;
+    bottom:0;
+    padding:0 22px;
+  }
+
+  .showcase-overlay h2{
+    width:100%;
+    max-width:340px;
+    white-space:normal;
+    font-size:clamp(38px,10.7vw,48px);
+    line-height:.98;
+    letter-spacing:-.058em;
+    text-align:center;
+    text-wrap:balance;
+    text-shadow:
+      0 2px 16px rgba(0,0,0,.98),
+      0 10px 60px rgba(0,0,0,.94);
+  }
+
+  .photo-label{
+    left:14px;
+    right:10px;
+    bottom:24px;
+  }
+
+  .photo-label strong{
+    display:block;
+    max-width:100%;
+    font-size:11px;
+    line-height:1.18;
+    letter-spacing:-.018em;
+    white-space:normal;
+  }
+
+  .label-desktop{display:none}
+  .label-mobile{display:inline}
+
+  .photo-label em{
+    margin:0 .1em 0 0;
+  }
+
+  /* Introduction: simply tighten spacing, do not split it */
+  .about-page{
+    height:auto;
+    min-height:100svh;
+    padding:
+      calc(var(--mobile-header) + 38px)
+      0
+      56px;
+    align-items:flex-start;
+  }
+
+  .about-page-inner{
+    width:calc(100% - 36px);
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+
+  .about-page-title > span{
+    margin-bottom:12px;
+    font-size:9px;
+  }
+
+  .about-page-title h2{
+    max-width:350px;
+    font-size:clamp(40px,11.2vw,52px);
+    line-height:.98;
+  }
+
+  .about-page-copy .about-lead{
+    font-size:16px;
+    line-height:1.48;
+  }
+
+  .about-page-copy > p{
+    font-size:12.5px;
+    line-height:1.56;
+  }
+
+  .skills-block{
+    margin-top:30px;
+  }
+
+  .skill-row{
+    grid-template-columns:1fr;
+    gap:6px;
+    padding:13px 0;
+  }
+
+  .skill-row strong,
+  .skill-row p{
+    font-size:11.5px;
+  }
+
+  /* Projects: same page, only compressed */
+  .projects-page{
+    min-height:100svh;
+    height:auto;
+    padding:
+      calc(var(--mobile-header) + 32px)
+      0
+      44px;
+  }
+
+  .projects-inner{
+    width:calc(100% - 36px);
+  }
+
+  .projects-heading{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding-bottom:22px;
+  }
+
+  .projects-heading > span{
+    padding:0;
+    font-size:9px;
+  }
+
+  .projects-heading h2{
+    font-size:clamp(42px,11.5vw,54px);
+  }
+
+  .project-row{
+    grid-template-columns:1fr 20px;
+    gap:10px 12px;
+    padding:16px 0;
+  }
+
+  .project-row:hover{
+    padding-left:0;
+    padding-right:0;
+    background:transparent;
+  }
+
+  .project-meta{
+    grid-column:1 / -1;
+    flex-direction:row;
+    gap:8px 12px;
+    font-size:8px;
+  }
+
+  .project-main h3{
+    font-size:clamp(28px,8.5vw,36px);
+  }
+
+  .project-main p{
+    max-width:310px;
+    font-size:10.5px;
+    line-height:1.45;
+  }
+
+  /* Contact */
+  .contact-section{
+    width:calc(100% - 36px);
+    height:100svh;
+    min-height:100svh;
+    padding:var(--mobile-header) 0 0;
+  }
+
+  .contact-box{
+    padding:0;
+  }
+
+  .contact-kicker{
+    margin-bottom:28px;
+    font-size:9px;
+  }
+
+  .contact-box h2{
+    max-width:350px;
+    margin-bottom:22px;
+    font-size:clamp(46px,13vw,60px);
+    line-height:.96;
+  }
+
+  .contact-links{
+    gap:7px;
+  }
+
+  .contact-links a{
+    min-height:35px;
+    padding:8px 10px;
+    font-size:9.5px;
+  }
+
+  .contact-email-pill{
+    flex-basis:100%;
+    width:max-content;
+    max-width:100%;
+  }
+
+  .footer{
+    width:100%;
+    padding-bottom:max(18px,env(safe-area-inset-bottom));
+  }
+
+  .replay-item{
+    transform:translateY(5px);
+  }
+}
+
+
+/* =========================================================
+   MOBILE PAGE 3 FIT — keep v31 look, remove inner scrolling
+   ========================================================= */
+.about-mobile-copy{display:none}
+
+@media(max-width:640px){
+  .about-page{
+    height:100svh !important;
+    min-height:100svh !important;
+    max-height:100svh;
+    padding:
+      calc(var(--mobile-header) + 22px)
+      0
+      22px !important;
+    overflow:hidden;
+    align-items:center !important;
+  }
+
+  .about-page-inner{
+    width:calc(100% - 36px);
+    height:calc(100svh - var(--mobile-header) - 44px);
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto 1fr;
+    gap:18px !important;
+    align-content:center;
+  }
+
+  .about-page-title > span{
+    margin-bottom:8px !important;
+    font-size:8.5px !important;
+  }
+
+  .about-page-title h2{
+    max-width:340px;
+    font-size:clamp(34px,9.7vw,44px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.055em;
+  }
+
+  /* Desktop copy stays available on desktop, but not on phone. */
+  .about-page-copy > .about-lead,
+  .about-page-copy > p:not(.about-mobile-lead){
+    display:none;
+  }
+
+  .about-mobile-copy{
+    display:block;
+    margin-bottom:16px;
+  }
+
+  .about-mobile-copy p{
+    margin:0 0 10px;
+    color:#929298;
+    font-size:11.3px;
+    line-height:1.45;
+    letter-spacing:-.012em;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    color:#dedee2;
+    font-size:13.4px;
+    line-height:1.42;
+    font-weight:500;
+  }
+
+  .skills-block{
+    margin-top:0 !important;
+  }
+
+  .skills-title{
+    padding:9px 0 8px !important;
+    font-size:8.5px !important;
+  }
+
+  .skill-row{
+    grid-template-columns:92px 1fr !important;
+    gap:10px !important;
+    padding:8px 0 !important;
+  }
+
+  .skill-row strong{
+    font-size:9.5px !important;
+    line-height:1.35;
+  }
+
+  .skill-row p{
+    margin:0;
+    font-size:9.5px !important;
+    line-height:1.35 !important;
+  }
+
+  /* Prevent the old mobile rule from stacking skill rows vertically. */
+  .about-page .skill-row{
+    grid-template-columns:92px 1fr !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE CONTACT — balanced two-row layout
+   ========================================================= */
+@media(max-width:640px){
+  .contact-links{
+    display:grid !important;
+    grid-template-columns:auto auto auto auto;
+    justify-content:start;
+    align-items:center;
+    gap:8px !important;
+  }
+
+  /* Email + Resume on first row */
+  .contact-email-pill{
+    grid-column:1 / 4;
+    grid-row:1;
+    width:auto !important;
+    max-width:none !important;
+    min-width:0;
+    flex-basis:auto !important;
+    padding:8px 11px !important;
+  }
+
+  .contact-email-pill span:last-child{
+    font-size:9.5px;
+    white-space:nowrap;
+  }
+
+  .contact-links > a:last-child{
+    grid-column:4;
+    grid-row:1;
+  }
+
+  /* Socials on second row */
+  .contact-links > a:nth-child(2){grid-column:1;grid-row:2}
+  .contact-links > a:nth-child(3){grid-column:2;grid-row:2}
+  .contact-links > a:nth-child(4){grid-column:3;grid-row:2}
+  .contact-links > a:nth-child(5){grid-column:4;grid-row:2}
+
+  .contact-links a{
+    min-height:34px !important;
+    padding:8px 10px !important;
+    font-size:9.25px !important;
+  }
+
+  .contact-links .brand-icon,
+  .contact-links .brand-icon svg{
+    width:12px !important;
+    height:12px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE INTRO — tighter vertical rhythm
+   ========================================================= */
+@media(max-width:640px){
+  .about-page{
+    align-items:flex-start !important;
+    padding:
+      calc(var(--mobile-header) + 24px)
+      0
+      18px !important;
+  }
+
+  .about-page-inner{
+    height:auto !important;
+    min-height:calc(100svh - var(--mobile-header) - 42px);
+    display:flex !important;
+    flex-direction:column;
+    justify-content:flex-start;
+    gap:18px !important;
+    align-content:initial !important;
+  }
+
+  .about-page-title{
+    margin:0;
+  }
+
+  .about-page-title > span{
+    margin-bottom:8px !important;
+  }
+
+  .about-page-title h2{
+    margin:0;
+  }
+
+  .about-page-copy{
+    margin-top:0;
+  }
+
+  .about-mobile-copy{
+    margin:0 0 14px !important;
+  }
+
+  .about-mobile-copy p{
+    margin:0 0 8px !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    margin-bottom:8px !important;
+  }
+
+  .skills-block{
+    margin-top:8px !important;
+  }
+
+  .skills-title{
+    padding-top:8px !important;
+    padding-bottom:8px !important;
+  }
+
+  .skill-row{
+    padding:7px 0 !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE INTRO — fill the whole screen, not just the top
+   ========================================================= */
+@media(max-width:640px){
+  .about-page{
+    height:100svh !important;
+    min-height:100svh !important;
+    max-height:100svh;
+    overflow:hidden;
+    padding:
+      calc(var(--mobile-header) + 22px)
+      0
+      18px !important;
+  }
+
+  .about-page-inner{
+    width:calc(100% - 36px);
+    height:calc(100svh - var(--mobile-header) - 40px) !important;
+    min-height:0 !important;
+    display:grid !important;
+    grid-template-rows:auto auto minmax(0,1fr);
+    gap:20px !important;
+    align-content:stretch !important;
+  }
+
+  .about-page-title h2{
+    max-width:350px;
+    font-size:clamp(38px,10.6vw,48px) !important;
+    line-height:.97 !important;
+  }
+
+  .about-mobile-copy{
+    margin:0 !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    font-size:14.2px !important;
+    line-height:1.43 !important;
+    margin-bottom:9px !important;
+  }
+
+  .about-mobile-copy p{
+    font-size:11.8px !important;
+    line-height:1.46 !important;
+    margin-bottom:0 !important;
+  }
+
+  .skills-block{
+    margin-top:0 !important;
+    min-height:0;
+    display:grid;
+    grid-template-rows:auto repeat(4,minmax(0,1fr));
+    border-top:1px solid var(--line);
+  }
+
+  .skills-title{
+    display:flex;
+    align-items:center;
+    padding:8px 0 9px !important;
+  }
+
+  .skill-row,
+  .about-page .skill-row{
+    min-height:0;
+    display:grid !important;
+    grid-template-columns:105px 1fr !important;
+    gap:12px !important;
+    align-items:center;
+    padding:0 !important;
+  }
+
+  .skill-row strong{
+    font-size:10.3px !important;
+    line-height:1.32 !important;
+  }
+
+  .skill-row p{
+    font-size:10.2px !important;
+    line-height:1.36 !important;
+  }
+}
+
+/* Shorter phones: stay inside one snap screen. */
+@media(max-width:640px) and (max-height:740px){
+  .about-page-inner{
+    gap:14px !important;
+  }
+
+  .about-page-title h2{
+    font-size:clamp(34px,9.8vw,43px) !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    font-size:12.8px !important;
+  }
+
+  .about-mobile-copy p{
+    font-size:10.8px !important;
+  }
+
+  .skill-row strong,
+  .skill-row p{
+    font-size:9.4px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE INTRO / SKILLS SPLIT
+   Desktop remains exactly as before.
+   ========================================================= */
+.mobile-skills-page{
+  display:none;
+}
+
+@media(max-width:640px){
+
+  /* Introduction gets a full, breathable screen */
+  .about-page{
+    height:100svh !important;
+    min-height:100svh !important;
+    max-height:100svh;
+    padding:
+      calc(var(--mobile-header) + 34px)
+      0
+      34px !important;
+    overflow:hidden;
+    display:flex !important;
+    align-items:center !important;
+  }
+
+  .about-page-inner{
+    width:calc(100% - 40px) !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:auto;
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+    gap:34px !important;
+  }
+
+  .about-page-title > span{
+    margin-bottom:11px !important;
+    font-size:9px !important;
+  }
+
+  .about-page-title h2{
+    max-width:350px;
+    font-size:clamp(42px,11.8vw,54px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.058em !important;
+  }
+
+  .about-mobile-copy{
+    display:block !important;
+    margin:0 !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    margin:0 0 16px !important;
+    color:#dedee2;
+    font-size:16px !important;
+    line-height:1.48 !important;
+    font-weight:500;
+  }
+
+  .about-mobile-copy p{
+    margin:0 !important;
+    color:#929298;
+    font-size:13px !important;
+    line-height:1.58 !important;
+  }
+
+  /* Hide the desktop Skills block only on mobile */
+  .about-page .skills-block{
+    display:none !important;
+  }
+
+  /* Dedicated mobile Skills screen */
+  .mobile-skills-page{
+    width:100%;
+    height:100svh;
+    min-height:100svh;
+    padding:
+      calc(var(--mobile-header) + 36px)
+      0
+      32px;
+    display:flex;
+    align-items:center;
+    background:#000;
+  }
+
+  .mobile-skills-inner{
+    width:calc(100% - 40px);
+    margin:auto;
+  }
+
+  .mobile-skills-heading{
+    margin-bottom:32px;
+  }
+
+  .mobile-skills-heading > span{
+    display:block;
+    margin-bottom:11px;
+    color:var(--accent);
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+  }
+
+  .mobile-skills-heading h2{
+    margin:0;
+    max-width:340px;
+    font-size:clamp(42px,11.8vw,54px);
+    line-height:.97;
+    letter-spacing:-.06em;
+    font-weight:600;
+  }
+
+  .mobile-skills-list{
+    border-top:1px solid var(--line);
+  }
+
+  .mobile-skill-row{
+    padding:18px 0 19px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .mobile-skill-row strong{
+    display:block;
+    margin-bottom:7px;
+    color:#dedee2;
+    font-size:12px;
+    line-height:1.35;
+    font-weight:600;
+  }
+
+  .mobile-skill-row p{
+    margin:0;
+    color:#85858b;
+    font-size:12px;
+    line-height:1.52;
+  }
+}
+
+/* Smaller phone heights: slight tightening, still no inner scrolling. */
+@media(max-width:640px) and (max-height:740px){
+  .about-page-inner{
+    gap:26px !important;
+  }
+
+  .about-page-title h2,
+  .mobile-skills-heading h2{
+    font-size:clamp(38px,10.7vw,48px) !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    font-size:14.5px !important;
+  }
+
+  .about-mobile-copy p,
+  .mobile-skill-row p{
+    font-size:11.2px !important;
+  }
+
+  .mobile-skills-heading{
+    margin-bottom:24px;
+  }
+
+  .mobile-skill-row{
+    padding:14px 0 15px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SHOWCASE — rebuilt from one coordinate system
+   ========================================================= */
+.mobile-seam{display:none}
+
+@media(max-width:640px){
+  .showcase-panels{
+    width:100%;
+    height:100svh;
+    min-height:100svh;
+  }
+
+  /*
+    Everything below uses coordinates relative to ONE parent:
+      seam 1: left 36.00% -> right 31.68%
+      seam 2: left 67.68% -> right 63.36%
+
+    The photo clip edges and the white seam polygons use
+    those exact same numbers.
+  */
+  .photo-strip{
+    position:absolute !important;
+    top:var(--mobile-header) !important;
+    left:0 !important;
+    width:100% !important;
+    height:calc(100svh - var(--mobile-header)) !important;
+    display:block !important;
+    overflow:hidden !important;
+    background:#000;
+  }
+
+  .photo-panel{
+    position:absolute !important;
+    inset:0 !important;
+    width:100% !important;
+    height:100% !important;
+    margin:0 !important;
+    flex:none !important;
+    overflow:hidden !important;
+    scroll-snap-align:none !important;
+  }
+
+  /* Band 1 */
+  .photo-panel:nth-of-type(1){
+    clip-path:polygon(
+      0 0,
+      100% 0,
+      100% 31.68%,
+      0 36%
+    ) !important;
+    z-index:1;
+  }
+
+  /* Band 2 */
+  .photo-panel:nth-of-type(2){
+    clip-path:polygon(
+      0 36%,
+      100% 31.68%,
+      100% 63.36%,
+      0 67.68%
+    ) !important;
+    z-index:2;
+  }
+
+  /* Band 3 */
+  .photo-panel:nth-of-type(3){
+    clip-path:polygon(
+      0 67.68%,
+      100% 63.36%,
+      100% 100%,
+      0 100%
+    ) !important;
+    z-index:3;
+  }
+
+  .photo-placeholder{
+    position:absolute !important;
+    inset:-10px -3px !important;
+    transform:scale(1.025) !important;
+    background-size:cover !important;
+    background-position:center center !important;
+  }
+
+  .photo-panel::after{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,.07) 0%,
+        rgba(0,0,0,.12) 48%,
+        rgba(0,0,0,.38) 100%
+      ) !important;
+  }
+
+  /* Desktop separators and labels are not used on phone. */
+  .panel-separator,
+  .mobile-panel-separator,
+  .mobile-band-separators{
+    display:none !important;
+  }
+
+  .photo-label{
+    display:none !important;
+  }
+
+  /*
+    White separators are not lines that get rotated.
+    They are very thin polygons using the SAME global seam
+    coordinates as the photo clips, expanded by ~0.14%.
+  */
+  .mobile-seam{
+    display:block !important;
+    position:absolute;
+    inset:0;
+    z-index:12;
+    pointer-events:none;
+    background:rgba(255,255,255,.72);
+  }
+
+  .mobile-seam-1{
+    clip-path:polygon(
+      0 35.88%,
+      100% 31.56%,
+      100% 31.80%,
+      0 36.12%
+    );
+  }
+
+  .mobile-seam-2{
+    clip-path:polygon(
+      0 67.56%,
+      100% 63.24%,
+      100% 63.48%,
+      0 67.80%
+    );
+  }
+
+  .showcase-overlay{
+    top:var(--mobile-header) !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    padding:0 26px !important;
+    z-index:20 !important;
+  }
+
+  .showcase-overlay h2{
+    width:100% !important;
+    max-width:330px !important;
+    margin:0 auto !important;
+    white-space:normal !important;
+    font-size:clamp(38px,10.7vw,48px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.058em !important;
+    text-align:center !important;
+    text-wrap:balance;
+    text-shadow:
+      0 3px 18px rgba(0,0,0,.98),
+      0 12px 56px rgba(0,0,0,.93) !important;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP PANEL GEOMETRY FIX
+   Use explicit panel classes so mobile helper elements
+   cannot break :first-child / :last-child geometry.
+   ========================================================= */
+@media(min-width:641px){
+  .photo-panel.panel-1{
+    clip-path:polygon(
+      0 0,
+      100% 0,
+      calc(100% - var(--cut)) 100%,
+      0 100%
+    ) !important;
+  }
+
+  .photo-panel.panel-2{
+    clip-path:polygon(
+      var(--cut) 0,
+      100% 0,
+      calc(100% - var(--cut)) 100%,
+      0 100%
+    ) !important;
+  }
+
+  .photo-panel.panel-3{
+    clip-path:polygon(
+      var(--cut) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    ) !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SHOWCASE LABELS — restore capability text
+   ========================================================= */
+@media(max-width:640px){
+  .photo-label{
+    display:flex !important;
+    position:absolute !important;
+    z-index:16 !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    top:auto !important;
+    flex-direction:row !important;
+    align-items:center;
+    gap:0 !important;
+    text-shadow:
+      0 2px 12px rgba(0,0,0,.95),
+      0 8px 30px rgba(0,0,0,.85);
+  }
+
+  .photo-label strong{
+    display:block;
+    max-width:none !important;
+    color:#f2f2f4;
+    font-size:12px !important;
+    line-height:1 !important;
+    letter-spacing:-.02em !important;
+    font-weight:500 !important;
+    white-space:nowrap !important;
+  }
+
+  .photo-label em{
+    color:var(--accent) !important;
+    font-style:normal;
+    margin:0 .34em !important;
+  }
+
+  /* First band — bottom-left */
+  .photo-panel.panel-1 .photo-label{
+    left:20px !important;
+    top:27.3% !important;
+  }
+
+  /* Middle band — bottom-right to avoid the central headline */
+  .photo-panel.panel-2 .photo-label{
+    right:20px !important;
+    top:58.1% !important;
+    text-align:right;
+  }
+
+  /* Third band — lower-left */
+  .photo-panel.panel-3 .photo-label{
+    left:20px !important;
+    top:90.2% !important;
+  }
+
+  /* Slight dark halo immediately behind labels, not a visible pill */
+  .photo-label::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    left:-10px;
+    right:-10px;
+    top:-8px;
+    bottom:-8px;
+    background:rgba(0,0,0,.20);
+    filter:blur(10px);
+    border-radius:999px;
+  }
+}
+
+@media(max-width:380px){
+  .photo-label strong{
+    font-size:11px !important;
+  }
+
+  .photo-panel.panel-1 .photo-label,
+  .photo-panel.panel-3 .photo-label{
+    left:16px !important;
+  }
+
+  .photo-panel.panel-2 .photo-label{
+    right:16px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SHOWCASE LABELS — single line only
+   ========================================================= */
+@media(max-width:640px){
+  .photo-label .label-desktop{
+    display:inline !important;
+  }
+
+  .photo-label .label-mobile{
+    display:none !important;
+  }
+
+  .photo-label strong{
+    white-space:nowrap !important;
+    font-size:11.5px !important;
+    line-height:1 !important;
+  }
+
+  .photo-panel.panel-1 .photo-label{
+    left:20px !important;
+    right:auto !important;
+  }
+
+  .photo-panel.panel-2 .photo-label{
+    right:20px !important;
+    left:auto !important;
+  }
+
+  .photo-panel.panel-3 .photo-label{
+    left:20px !important;
+    right:auto !important;
+  }
+}
+
+@media(max-width:380px){
+  .photo-label strong{
+    font-size:10.5px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SHOWCASE — refined visual language
+   Keep geometry, make it feel like the desktop version.
+   ========================================================= */
+@media(max-width:640px){
+
+  /* Softer image treatment — closer to desktop. */
+  .photo-placeholder{
+    inset:-12px -4px !important;
+    transform:scale(1.03) !important;
+    filter:brightness(.93) contrast(1.02);
+  }
+
+  .photo-panel::after{
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,.03) 0%,
+        rgba(0,0,0,.07) 46%,
+        rgba(0,0,0,.18) 72%,
+        rgba(0,0,0,.38) 100%
+      ) !important;
+  }
+
+  /* Restore the calmer desktop placeholder character. */
+  .panel-1 .photo-placeholder{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.22)),
+      radial-gradient(circle at 62% 34%,#292929 0,#111 40%,#050505 80%) !important;
+  }
+
+  .panel-2 .photo-placeholder{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.24)),
+      linear-gradient(135deg,#232323 0,#0a0a0a 54%,#151515 100%) !important;
+  }
+
+  .panel-3 .photo-placeholder{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.25)),
+      linear-gradient(145deg,#101010,#222 45%,#070707 80%) !important;
+  }
+
+  /*
+    Same exact seam geometry as before,
+    but thinner and with a horizontal fade like the desktop separator.
+  */
+  .mobile-seam{
+    background:
+      linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.10) 6%,
+        rgba(255,255,255,.56) 18%,
+        rgba(255,255,255,.64) 50%,
+        rgba(255,255,255,.56) 82%,
+        rgba(255,255,255,.10) 94%,
+        transparent 100%
+      ) !important;
+  }
+
+  .mobile-seam-1{
+    clip-path:polygon(
+      0 35.95%,
+      100% 31.63%,
+      100% 31.73%,
+      0 36.05%
+    ) !important;
+  }
+
+  .mobile-seam-2{
+    clip-path:polygon(
+      0 67.63%,
+      100% 63.31%,
+      100% 63.41%,
+      0 67.73%
+    ) !important;
+  }
+
+  /*
+    Labels are tied to the seams instead of floating in arbitrary corners.
+    Same rhythm on all three bands, with the center one mirrored.
+  */
+  .photo-label{
+    display:flex !important;
+    z-index:16 !important;
+    flex-direction:row !important;
+    align-items:center;
+    gap:0 !important;
+    text-shadow:
+      0 2px 12px rgba(0,0,0,.92),
+      0 8px 28px rgba(0,0,0,.74) !important;
+  }
+
+  .photo-label::before{
+    display:none !important;
+  }
+
+  .photo-label .label-desktop{
+    display:inline !important;
+  }
+
+  .photo-label .label-mobile{
+    display:none !important;
+  }
+
+  .photo-label strong{
+    color:rgba(245,245,247,.84) !important;
+    font-size:10.5px !important;
+    line-height:1 !important;
+    letter-spacing:.005em !important;
+    font-weight:500 !important;
+    white-space:nowrap !important;
+  }
+
+  .photo-label em{
+    color:var(--accent) !important;
+    margin:0 .28em !important;
+    font-weight:600 !important;
+  }
+
+  /* Above seam 1 */
+  .photo-panel.panel-1 .photo-label{
+    left:20px !important;
+    right:auto !important;
+    top:calc(36% - 32px) !important;
+    bottom:auto !important;
+    text-align:left !important;
+  }
+
+  /* Just below seam 1, mirrored to the right */
+  .photo-panel.panel-2 .photo-label{
+    right:20px !important;
+    left:auto !important;
+    top:calc(31.68% + 22px) !important;
+    bottom:auto !important;
+    text-align:right !important;
+  }
+
+  /* Just below seam 2 */
+  .photo-panel.panel-3 .photo-label{
+    left:20px !important;
+    right:auto !important;
+    top:calc(67.68% + 22px) !important;
+    bottom:auto !important;
+    text-align:left !important;
+  }
+
+  /* Keep the headline the visual priority. */
+  .showcase-overlay h2{
+    max-width:328px !important;
+    text-shadow:
+      0 3px 18px rgba(0,0,0,.98),
+      0 16px 64px rgba(0,0,0,.92) !important;
+  }
+}
+
+@media(max-width:380px){
+  .photo-label strong{
+    font-size:9.8px !important;
+  }
+
+  .photo-panel.panel-1 .photo-label,
+  .photo-panel.panel-3 .photo-label{
+    left:16px !important;
+  }
+
+  .photo-panel.panel-2 .photo-label{
+    right:16px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SHOWCASE LABEL SYSTEM
+   One axis, one rhythm, one placement rule.
+   ========================================================= */
+@media(max-width:640px){
+
+  .photo-label{
+    left:20px !important;
+    right:auto !important;
+    text-align:left !important;
+    display:flex !important;
+    align-items:center !important;
+    white-space:nowrap !important;
+  }
+
+  .photo-label strong{
+    font-size:10.5px !important;
+    line-height:1 !important;
+    letter-spacing:.01em !important;
+    font-weight:500 !important;
+    color:rgba(245,245,247,.82) !important;
+  }
+
+  .photo-label em{
+    color:var(--accent) !important;
+    margin:0 .32em !important;
+  }
+
+  /*
+    Every label sits at the same relative place:
+    near the lower-left edge of its own visible band.
+  */
+  .photo-panel.panel-1 .photo-label{
+    top:30.4% !important;
+    bottom:auto !important;
+  }
+
+  .photo-panel.panel-2 .photo-label{
+    top:61.8% !important;
+    bottom:auto !important;
+  }
+
+  .photo-panel.panel-3 .photo-label{
+    top:93.0% !important;
+    bottom:auto !important;
+  }
+
+  /*
+    Tiny guide line before each label: makes the three captions
+    feel like one designed system, without turning into a card UI.
+  */
+  .photo-label::before{
+    content:"" !important;
+    display:block !important;
+    position:static !important;
+    width:14px !important;
+    height:1px !important;
+    margin-right:8px !important;
+    background:rgba(255,255,255,.34) !important;
+    filter:none !important;
+    border-radius:0 !important;
+    flex:0 0 auto !important;
+  }
+}
+
+@media(max-width:380px){
+  .photo-label{
+    left:16px !important;
+  }
+
+  .photo-label strong{
+    font-size:9.8px !important;
+  }
+
+  .photo-label::before{
+    width:11px !important;
+    margin-right:7px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE LABEL DETAIL — Python guide line on the right
+   ========================================================= */
+@media(max-width:640px){
+  .photo-panel.panel-2 .photo-label::before{
+    display:none !important;
+  }
+
+  .photo-panel.panel-2 .photo-label::after{
+    content:"";
+    display:block;
+    width:14px;
+    height:1px;
+    margin-left:8px;
+    background:rgba(255,255,255,.34);
+    flex:0 0 auto;
+  }
+}
+
+@media(max-width:380px){
+  .photo-panel.panel-2 .photo-label::after{
+    width:11px;
+    margin-left:7px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE INTRO — one centered composition / one left axis
+   ========================================================= */
+@media(max-width:640px){
+  .about-page{
+    width:100% !important;
+    height:100svh !important;
+    min-height:100svh !important;
+    max-height:100svh !important;
+    padding:var(--mobile-header) 0 0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+  }
+
+  .about-page-inner{
+    width:calc(100% - 40px) !important;
+    max-width:none !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 auto !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:stretch !important;
+    gap:34px !important;
+
+    grid-template-columns:none !important;
+    grid-template-rows:none !important;
+  }
+
+  .about-page-title,
+  .about-page-copy{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .about-page-title > span{
+    display:block !important;
+    margin:0 0 11px !important;
+    font-size:9px !important;
+  }
+
+  .about-page-title h2{
+    width:100% !important;
+    max-width:350px !important;
+    margin:0 !important;
+    padding:0 !important;
+
+    font-size:clamp(42px,11.8vw,54px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.058em !important;
+    text-align:left !important;
+  }
+
+  .about-mobile-copy{
+    display:block !important;
+    width:100% !important;
+    max-width:350px !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    margin:0 0 16px !important;
+    font-size:16px !important;
+    line-height:1.48 !important;
+    color:#dedee2 !important;
+    font-weight:500 !important;
+  }
+
+  .about-mobile-copy p{
+    margin:0 !important;
+    font-size:13px !important;
+    line-height:1.58 !important;
+    color:#929298 !important;
+  }
+
+  .about-page .skills-block{
+    display:none !important;
+  }
+}
+
+@media(max-width:640px) and (max-height:740px){
+  .about-page-inner{
+    gap:26px !important;
+  }
+
+  .about-page-title h2{
+    font-size:clamp(38px,10.8vw,48px) !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    font-size:14.5px !important;
+  }
+
+  .about-mobile-copy p{
+    font-size:11.8px !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1016,6 +2570,8 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <div class="photo-strip">
+    <span class="mobile-seam mobile-seam-1" aria-hidden="true"></span>
+    <span class="mobile-seam mobile-seam-2" aria-hidden="true"></span>
     <a class="photo-panel panel-1" href="#about">
       <div class="photo-placeholder"></div>
 
@@ -1035,7 +2591,7 @@ a{color:inherit;text-decoration:none}
         <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskA)"/>
       </svg>
 
-      <div class="photo-label"><strong>Rigging <em>|</em> Tech Art</strong></div>
+      <div class="photo-label"><strong><span class="label-desktop">Rigging <em>|</em> Tech Art</span><span class="label-mobile">Rigging<br><em>|</em> Tech Art</span></strong></div>
     </a>
 
     <a class="photo-panel panel-2" href="#about">
@@ -1057,11 +2613,11 @@ a{color:inherit;text-decoration:none}
         <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskB)"/>
       </svg>
 
-      <div class="photo-label"><strong>Python <em>|</em> C++</strong></div>
+      <div class="photo-label"><strong><span class="label-desktop">Python <em>|</em> C++</span><span class="label-mobile">Python<br><em>|</em> C++</span></strong></div>
     </a>
 <a class="photo-panel panel-3" href="#about">
       <div class="photo-placeholder"></div>
-      <div class="photo-label"><strong>Software Engineering <em>|</em> R&amp;D</strong></div>
+      <div class="photo-label"><strong><span class="label-desktop">Software Engineering <em>|</em> R&amp;D</span><span class="label-mobile">Software<br><em>|</em> R&amp;D</span></strong></div>
     </a>
   </div>
 </section>
@@ -1074,6 +2630,15 @@ a{color:inherit;text-decoration:none}
     </div>
 
     <div class="about-page-copy reveal replay-item replay-delay-1">
+      <div class="about-mobile-copy">
+        <p class="about-mobile-lead">
+          I’m a Rigger / Tech Artist focused on character systems, software tools and technical R&amp;D for animation.
+        </p>
+        <p>
+          I build rigs, Maya / Blender tools and UE5 systems that make production workflows faster, cleaner and more predictable.
+        </p>
+      </div>
+
       <p class="about-lead">
         I’m a Rigger / Tech Artist with 4+ years of experience, focused on character systems,
         software tools and technical R&amp;D for animation.
@@ -1116,6 +2681,39 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 </section>
+
+
+<section class="mobile-skills-page snap-page">
+  <div class="mobile-skills-inner">
+    <div class="mobile-skills-heading replay-item">
+      <span>Skills</span>
+      <h2>Technical toolkit.</h2>
+    </div>
+
+    <div class="mobile-skills-list replay-item replay-delay-1">
+      <div class="mobile-skill-row">
+        <strong>Programming</strong>
+        <p>Python, MEL, C++, Bash, GLSL / HLSL, UE5 Blueprints, Materials &amp; Shaders</p>
+      </div>
+
+      <div class="mobile-skill-row">
+        <strong>UI &amp; Libraries</strong>
+        <p>Qt / PySide6, custom DCC tools and interfaces</p>
+      </div>
+
+      <div class="mobile-skill-row">
+        <strong>DCC</strong>
+        <p>Maya, Unreal Engine 5, Blender, currently exploring Houdini</p>
+      </div>
+
+      <div class="mobile-skill-row">
+        <strong>Math</strong>
+        <p>Linear algebra, vectors, matrices, quaternions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <section id="projects" class="projects-page snap-page">
