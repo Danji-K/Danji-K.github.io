@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stepan Devyatkin — Rigger, Tech Artist, Programmer, Software Engineer, R&D." />
+  <title>Stepan Devyatkin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg:#000;
+  --text:#f5f5f7;
+  --muted:#9a9aa0;
+  --muted2:#5e5e63;
+  --line:#242427;
+  --accent:#ff7818;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+.snap-page{
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+
+.site-header{
+  position:fixed;inset:0 0 auto;z-index:50;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:saturate(180%) blur(22px);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.header-inner{
+  width:min(1180px,calc(100% - 40px));height:48px;margin:auto;
+  display:flex;align-items:center;gap:28px;
+}
+.brand{margin-right:auto;font-size:12px;font-weight:600}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:10.5px;color:#aaaab0;letter-spacing:.03em;transition:.18s}
+
+.mail-link{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.mail-icon{
+  width:14px;
+  height:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+.mail-icon svg{
+  width:14px;
+  height:14px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.55;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.nav a:hover{color:#fff}
+.menu-toggle{display:none}
+
+.hero{
+  position:relative;
+  height:100vh;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:84px 24px 58px;
+}
+.hero-content{width:min(970px,100%);text-align:center}
+.hero h1{
+  margin:0;font-size:clamp(64px,8vw,122px);
+  line-height:.93;font-weight:600;letter-spacing:-.07em;
+}
+
+
+
+.hero-roles{
+  max-width:900px;
+  margin:24px auto 0;
+  color:var(--muted);
+  font-size:clamp(16px,1.45vw,21px);
+  line-height:1.4;
+  letter-spacing:-.024em;
+  font-weight:500;
+}
+.hero-actions{margin-top:31px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+
+.hero-scroll{
+  position:absolute;
+  right:max(24px,calc((100vw - var(--max))/2));
+  bottom:26px;
+  color:#5f5f64;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  transition:color .2s ease;
+}
+.hero-scroll:hover{color:#b5b5ba}
+
+.button{
+  min-height:42px;padding:0 17px;border-radius:999px;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;
+  font:600 12px inherit;cursor:pointer;transition:.2s;
+}
+.button-primary{background:var(--accent);color:#070707}
+.button-primary:hover{transform:translateY(-1px);opacity:.94}
+.button-secondary{background:#101010;border-color:#2a2a2d}
+.button-secondary:hover{background:#171717;border-color:#424247}
+
+.showcase{
+  width:min(1380px,calc(100% - 40px));
+  margin:0 auto;padding:110px 0 120px;
+}
+.video-copy,.panels-copy{
+  width:min(var(--max),100%);margin:0 auto 38px;
+}
+.showcase-label{
+  display:block;margin-bottom:14px;color:var(--accent);
+  font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.showcase h2{
+  margin:0;max-width:900px;font-size:clamp(42px,6vw,78px);
+  line-height:1;letter-spacing:-.06em;font-weight:500;
+}
+.video-frame{
+  position:relative;width:100%;aspect-ratio:16/7.7;
+  overflow:hidden;background:#060606;border-radius:24px;
+}
+.video-frame iframe{
+  position:absolute;inset:-12% 0;width:100%;height:124%;
+  border:0;pointer-events:none;
+}
+
+
+
+
+.showcase-panels{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  min-height:100vh;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  background:#000;
+}
+
+/* Text is centered in the visible area below the fixed header. */
+.showcase-overlay{
+  position:absolute;
+  z-index:12;
+  top:48px;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 36px;
+  text-align:center;
+  pointer-events:none;
+}
+
+.showcase-overlay h2{
+  margin:0;
+  width:max-content;
+  max-width:none;
+  color:#f5f5f7;
+  font-size:clamp(34px,4.05vw,66px);
+  line-height:1;
+  letter-spacing:-.055em;
+  font-weight:600;
+  white-space:nowrap;
+  text-shadow:
+    0 2px 16px rgba(0,0,0,.9),
+    0 8px 52px rgba(0,0,0,.8);
+}
+
+/* Exactly the visible viewport below the 48px fixed header. */
+
+.photo-strip{
+  --cut:64px;
+  --overlap:32px;
+  position:absolute;
+  top:48px;
+  left:0;
+  width:100vw;
+  height:calc(100vh - 48px);
+  display:flex;
+  overflow:hidden;
+  background:#050505;
+}
+
+.photo-panel{
+  position:relative;
+  flex:0 0 calc(33.333333% + var(--overlap));
+  height:100%;
+  margin-right:calc(var(--overlap) * -1);
+  overflow:hidden;
+  color:#fff;
+  isolation:isolate;
+  backface-visibility:hidden;
+  transition:filter .25s ease;
+}
+
+/* The image panels themselves now follow the diagonal geometry. */
+.photo-panel:first-child{
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    calc(100% - var(--cut)) 100%,
+    0 100%
+  );
+}
+
+.photo-panel:not(:first-child):not(:last-child){
+  clip-path:polygon(
+    var(--cut) 0,
+    100% 0,
+    calc(100% - var(--cut)) 100%,
+    0 100%
+  );
+}
+
+.photo-panel:last-child{
+  clip-path:polygon(
+    var(--cut) 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.photo-panel:hover{
+  filter:brightness(1.06);
+  z-index:4;
+}
+
+.photo-placeholder{
+  --parallax-y:0px;
+  position:absolute;
+  inset:-18px -1px;
+  background-size:cover;
+  background-position:center;
+  transform:translateY(var(--parallax-y)) scale(1.035);
+  transition:transform .22s linear;
+  will-change:transform;
+}
+
+.photo-panel:hover .photo-placeholder{
+  transform:translateY(var(--parallax-y)) scale(1.055);
+}
+
+/* Readability layer: darkens the lower part where labels live. */
+.photo-panel::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 55%,
+      rgba(0,0,0,.14) 68%,
+      rgba(0,0,0,.72) 100%
+    );
+}
+
+.panel-1 .photo-placeholder{
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.30)),
+    radial-gradient(circle at 62% 34%,#2a2a2a 0,#111 38%,#050505 78%);
+}
+.panel-2 .photo-placeholder{
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.07),rgba(0,0,0,.31)),
+    linear-gradient(135deg,#262626 0,#0a0a0a 52%,#171717 100%);
+}
+.panel-3 .photo-placeholder{
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.07),rgba(0,0,0,.34)),
+    linear-gradient(145deg,#101010,#252525 44%,#080808 78%);
+}
+
+
+
+
+/* Vector separators: no transformed 1px DOM line, so diagonals stay crisp. */
+.panel-separator{
+  position:absolute;
+  z-index:8;
+  top:0;
+  right:0;
+  width:var(--cut);
+  height:100%;
+  overflow:visible;
+  pointer-events:none;
+}
+
+.separator-vector{
+  fill:none;
+  stroke:rgba(255,255,255,.76);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+  shape-rendering:geometricPrecision;
+  stroke-linecap:butt;
+}
+
+.photo-panel:nth-of-type(1) .photo-placeholder{--parallax-factor:-1}
+.photo-panel:nth-of-type(2) .photo-placeholder{--parallax-factor:.45}
+.photo-panel:nth-of-type(3) .photo-placeholder{--parallax-factor:1}
+
+.photo-label{
+  position:absolute;
+  z-index:6;
+  left:clamp(22px,2.2vw,40px);
+  bottom:clamp(26px,3.2vw,52px);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  text-shadow:0 2px 20px rgba(0,0,0,.92);
+}
+
+
+.photo-label strong{
+  font-size:clamp(16px,1.45vw,25px);
+  line-height:1;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.photo-label em{
+  color:var(--accent);
+  font-style:normal;
+  font-weight:500;
+  margin:0 .18em;
+}
+
+.section{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.works-section{min-height:100vh;padding:120px 0 130px}
+.section-heading{
+  display:flex;justify-content:space-between;border-top:1px solid var(--line);
+  padding-top:15px;color:var(--muted2);font-size:10px;text-transform:uppercase;letter-spacing:.08em;
+}
+.work-card{
+  display:grid;grid-template-columns:70px 1fr;gap:28px;
+  padding:44px 0;border-bottom:1px solid var(--line);
+}
+.work-index{padding-top:7px;color:#55555a;font-size:11px}
+.work-topline{display:flex;gap:10px}
+.tag{color:var(--accent);font-size:10px;font-weight:600;letter-spacing:.065em}
+.work-card h2{
+  margin:15px 0 12px;font-size:clamp(34px,4vw,57px);
+  line-height:1.02;letter-spacing:-.052em;font-weight:500;
+}
+.work-card p{
+  max-width:760px;margin:0;color:var(--muted);font-size:16px;line-height:1.62;
+}
+.tech-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.tech-list span{
+  padding:7px 10px;border:1px solid #29292c;border-radius:999px;color:#8d8d92;font-size:10px;
+}
+
+
+.about-page{
+  width:100vw;
+  min-height:100vh;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  background:#000;
+  padding:48px 0 0;
+}
+
+.about-page-inner{
+  width:min(var(--max),calc(100% - 48px));
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:clamp(60px,8vw,130px);
+  align-items:center;
+}
+
+.about-page-title > span{
+  display:block;
+  margin-bottom:18px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.about-page-title h2{
+  margin:0;
+  max-width:680px;
+  font-size:clamp(46px,5.6vw,80px);
+  line-height:.98;
+  letter-spacing:-.063em;
+  font-weight:600;
+}
+
+.about-page-copy > p{
+  margin:0 0 22px;
+  color:#a3a3a8;
+  font-size:clamp(16px,1.35vw,20px);
+  line-height:1.65;
+  letter-spacing:-.02em;
+}
+
+
+.about-page-copy .about-lead{
+  color:#e0e0e3;
+  font-size:clamp(19px,1.55vw,23px);
+  line-height:1.52;
+  letter-spacing:-.025em;
+  font-weight:500;
+  margin-bottom:26px;
+}
+
+
+
+.skills-block{
+  margin-top:42px;
+}
+
+.skills-title{
+  display:block;
+  padding:16px 0 14px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--line);
+}
+
+.skill-row{
+  display:grid;
+  grid-template-columns:minmax(120px,160px) 1fr;
+  gap:28px;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.skill-row strong{
+  color:#dedee2;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+
+.skill-row p{
+  margin:0;
+  color:#85858b;
+  font-size:12px;
+  line-height:1.5;
+  letter-spacing:-.01em;
+}
+
+
+.projects-page{
+  width:100vw;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:78px 0 54px;
+  background:#000;
+}
+
+.projects-inner{
+  width:min(var(--max),calc(100% - 48px));
+  margin:0 auto;
+}
+
+.projects-heading{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:28px;
+  align-items:end;
+  padding-bottom:28px;
+}
+
+.projects-heading > span{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  padding-bottom:8px;
+}
+
+.projects-heading h2{
+  margin:0;
+  font-size:clamp(48px,6.4vw,88px);
+  line-height:.96;
+  letter-spacing:-.065em;
+  font-weight:600;
+}
+
+.projects-list{
+  border-top:1px solid var(--line);
+}
+
+.project-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:150px 1fr 30px;
+  gap:28px;
+  align-items:center;
+  padding:22px 0 24px;
+  border-bottom:1px solid var(--line);
+  transition:background .25s ease, padding-left .25s ease, padding-right .25s ease;
+}
+
+.project-row:hover{
+  background:#080808;
+  padding-left:18px;
+  padding-right:18px;
+}
+
+.project-meta{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  color:#55555b;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.075em;
+}
+
+.project-meta span:first-child{
+  color:#8d8d92;
+}
+
+.project-main{
+  min-width:0;
+}
+
+.project-main h3{
+  margin:0 0 7px;
+  font-size:clamp(31px,3.4vw,50px);
+  line-height:1;
+  letter-spacing:-.052em;
+  font-weight:500;
+}
+
+.project-main p{
+  margin:0;
+  max-width:720px;
+  color:#85858b;
+  font-size:13px;
+  line-height:1.55;
+}
+
+.project-arrow{
+  justify-self:end;
+  color:#58585e;
+  font-size:18px;
+  transition:transform .2s ease,color .2s ease;
+}
+
+.project-row:hover .project-arrow{
+  color:#fff;
+  transform:translate(3px,-3px);
+}
+
+
+
+.contact-section{
+  position:relative;
+  width:min(var(--max),calc(100% - 48px));
+  height:100vh;
+  min-height:100vh;
+  padding:48px 0 0;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+}
+
+.contact-box{
+  width:100%;
+  text-align:left;
+  padding:clamp(44px,5.7vw,76px) 0;
+}
+
+.contact-kicker{
+  display:block;
+  margin-bottom:clamp(38px,5vw,60px);
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.contact-box h2{
+  margin:0;
+  max-width:1100px;
+  font-size:clamp(52px,7vw,96px);
+  line-height:.95;
+  letter-spacing:-.065em;
+  font-weight:500;
+}
+
+
+
+.brand-icon{
+  width:15px;
+  height:15px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+
+.contact-email-icon svg,
+.brand-icon svg{
+  width:15px;
+  height:15px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.45;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.brand-icon .brand-fill{
+  fill:currentColor;
+  stroke:none;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:24px;
+}
+
+.contact-links a{
+  min-height:38px;
+  padding:9px 13px;
+  border:1px solid #29292d;
+  border-radius:999px;
+  color:#bdbdc2;
+  font-size:11px;
+  transition:border-color .18s ease,color .18s ease,background .18s ease;
+}
+
+
+.contact-email-pill{
+  padding-left:14px !important;
+  padding-right:16px !important;
+}
+
+.contact-links a:hover{
+  border-color:#525258;
+  color:#fff;
+  background:#080808;
+}
+
+.contact-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.footer{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  margin:0;
+  padding:18px 0 24px;
+  color:#4f4f54;
+  font-size:10px;
+}
+
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+
+
+@media(max-width:900px){
+  .header-inner{height:54px;width:calc(100% - 30px)}
+  .menu-toggle{display:block;margin-left:auto;background:none;border:0;padding:8px}
+  .menu-toggle span{display:block;width:20px;height:1px;background:#fff;margin:5px 0}
+  .nav{
+    position:absolute;top:54px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;
+    gap:0;background:rgba(0,0,0,.98);border-bottom:1px solid var(--line);padding:10px 18px 18px;
+  }
+  .nav.open{display:flex}
+  .nav a{padding:13px 0;border-bottom:1px solid #18181a;font-size:12px}
+
+  .showcase-overlay{top:54px}
+  .photo-strip{top:54px;height:calc(100vh - 54px)}
+}
+
+@media(max-width:580px){
+  .contact-section{min-height:100vh;padding-top:54px;padding-bottom:24px}
+
+  .section,.footer{width:calc(100% - 28px)}
+  .hero{height:100vh;min-height:100vh;padding-left:14px;padding-right:14px}
+  .hero h1{font-size:clamp(52px,16vw,76px)}
+  .hero-roles{font-size:16px;max-width:520px}
+  
+  .showcase-overlay{
+    top:54px;
+    padding:0 20px;
+  }
+  .showcase-overlay h2{
+    font-size:clamp(40px,12.5vw,62px);
+  }
+
+  .photo-strip{
+    top:54px;
+    height:calc(100vh - 54px);
+    --cut:38px;
+    --overlap:22px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .photo-strip::-webkit-scrollbar{display:none}
+
+  .photo-panel{
+    flex:0 0 calc(82vw + var(--overlap));
+    margin-right:calc(var(--overlap) * -1);
+    scroll-snap-align:start;
+  }
+
+  .photo-label{
+    left:24px;
+    bottom:28px;
+  }
+
+  .works-section{padding:90px 0}
+  .work-card{grid-template-columns:1fr;gap:8px}
+  .footer{width:calc(100% - 28px)}
+}
+
+
+@media(max-width:900px){
+  .about-page{
+    height:auto;
+    min-height:100vh;
+    padding:92px 0 56px;
+  }
+  .about-page-inner{
+    grid-template-columns:1fr;
+    gap:44px;
+  }
+  .showcase-overlay h2{
+    white-space:normal;
+    width:min(900px,100%);
+    text-align:center;
+  }
+}
+
+@media(max-width:580px){
+  .hero-scroll{
+    right:16px;
+    bottom:22px;
+  }
+  .showcase-overlay h2{
+    font-size:clamp(36px,11vw,54px);
+  }
+  .about-page-inner{
+    width:calc(100% - 28px);
+  }
+  .about-page-title h2{
+    font-size:clamp(44px,13vw,64px);
+  }
+}
+
+
+@media(max-width:580px){
+  .skill-row{
+    grid-template-columns:1fr;
+    gap:6px;
+    padding:14px 0;
+  }
+  .skill-row strong,
+  .skill-row p{
+    font-size:12px;
+  }
+}
+
+
+@media(max-width:700px){
+  .projects-page{
+    min-height:100vh;
+    padding:84px 0 44px;
+  }
+
+  .projects-inner{
+    width:calc(100% - 28px);
+  }
+
+  .projects-heading{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding-bottom:26px;
+  }
+
+  .projects-heading h2{
+    font-size:clamp(44px,14vw,64px);
+  }
+
+  .project-row{
+    grid-template-columns:1fr 24px;
+    gap:16px;
+    padding:22px 0;
+  }
+
+  .project-meta{
+    grid-column:1 / -1;
+    flex-direction:row;
+    gap:12px;
+  }
+
+  .project-main p{
+    font-size:12px;
+  }
+}
+
+
+@media(max-width:580px){
+  .contact-links{
+    gap:8px;
+  }
+  }
+
+
+@media(max-width:580px){
+  .contact-section{
+    height:100vh;
+    min-height:100vh;
+    padding-top:54px;
+    padding-bottom:0;
+  }
+
+  .contact-box{
+    padding:44px 0 30px;
+  }
+
+  
+  
+  .contact-box h2{
+    margin-bottom:22px;
+    font-size:clamp(48px,14vw,68px);
+  }
+
+  .contact-links{
+    gap:8px;
+  }
+}
+
+
+@media(max-width:580px){
+  .contact-section{
+    height:100vh;
+    min-height:100vh;
+    padding-top:54px;
+    padding-bottom:0;
+  }
+
+  .contact-box{
+    padding:40px 0 28px;
+  }
+
+  .contact-kicker{
+    margin-bottom:34px;
+  }
+
+  .contact-box h2{
+    font-size:clamp(48px,14vw,68px);
+  }
+
+  
+  .contact-links{
+    margin-top:16px;
+    gap:8px;
+  }
+}
+
+
+@media(max-width:580px){
+  .contact-email-pill{
+    flex-basis:100%;
+    width:max-content;
+  }
+}
+
+
+/* Replay-on-section-enter animation system */
+.replay-item{
+  opacity:0;
+  transform:translateY(8px);
+  transition:
+    opacity .46s cubic-bezier(.22,.61,.36,1),
+    transform .46s cubic-bezier(.22,.61,.36,1);
+}
+
+.snap-page.is-active .replay-item{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.replay-delay-1{
+  transition-delay:.06s;
+}
+
+/* Project rows get a very light cascade on each page entry. */
+.projects-page.is-active .replay-project:nth-child(1){transition-delay:.04s}
+.projects-page.is-active .replay-project:nth-child(2){transition-delay:.08s}
+.projects-page.is-active .replay-project:nth-child(3){transition-delay:.12s}
+.projects-page.is-active .replay-project:nth-child(4){transition-delay:.16s}
+
+/* Reset delays when page leaves so returning feels fresh. */
+.snap-page:not(.is-active) .replay-item{
+  transition-delay:0s;
+}
+
+/* Second-screen headline is almost a pure fade, no dramatic movement. */
+.replay-headline{
+  transform:translateY(5px);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .replay-item,
+  .snap-page.is-active .replay-item{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+
+/* replay items are controlled by page activation, not the one-shot .visible class */
+.replay-item.visible{
+  opacity:0;
+  transform:translateY(8px);
+}
+.snap-page.is-active .replay-item.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top">Stepan Devyatkin</a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    
+    <nav class="nav">
+      <a class="mail-link" href="mailto:danji.work@icloud.com">
+        <span class="mail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect>
+            <path d="M4.5 7 12 12.5 19.5 7"></path>
+          </svg>
+        </span>
+        <span>danji.work@icloud.com</span>
+      </a>
+      <a href="#rigs">Rigs</a>
+      <a href="#async">ASYNC</a>
+      <a href="#apex">APEX</a>
+      <a href="#tools">TOOLS</a>
+      <a href="https://docs.google.com/document/d/1bTGBZ60pd0j2EKy7qeQGwk2CaepLK6ldSsnS27nPs9Y/edit?usp=drivesdk" target="_blank" rel="noreferrer">Resume</a>
+    </nav>
+
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero snap-page">
+    <div class="hero-content">
+      <h1 class="reveal">Stepan Devyatkin</h1>
+      <p class="hero-roles reveal">Rigger · Tech Artist · Programmer · Software Engineer · R&amp;D</p>
+    </div>
+    <a class="hero-scroll reveal" href="#second">Scroll ↓</a>
+  </section>
+
+<section id="second" class="showcase showcase-panels snap-page">
+  <div class="showcase-overlay reveal replay-item replay-headline">
+    <h2>Balancing on the edge between art and code.</h2>
+  </div>
+
+  <div class="photo-strip">
+    <a class="photo-panel panel-1" href="#about">
+      <div class="photo-placeholder"></div>
+
+      <svg class="panel-separator" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="separatorFadeA" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="white"/>
+            <stop offset="64%" stop-color="white"/>
+            <stop offset="78%" stop-color="#b5b5b5"/>
+            <stop offset="93%" stop-color="black"/>
+            <stop offset="100%" stop-color="black"/>
+          </linearGradient>
+          <mask id="separatorMaskA">
+            <rect width="100" height="100" fill="url(#separatorFadeA)"/>
+          </mask>
+        </defs>
+        <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskA)"/>
+      </svg>
+
+      <div class="photo-label"><strong>Rigging <em>|</em> Tech Art</strong></div>
+    </a>
+
+    <a class="photo-panel panel-2" href="#about">
+      <div class="photo-placeholder"></div>
+
+      <svg class="panel-separator" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="separatorFadeB" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="white"/>
+            <stop offset="64%" stop-color="white"/>
+            <stop offset="78%" stop-color="#b5b5b5"/>
+            <stop offset="93%" stop-color="black"/>
+            <stop offset="100%" stop-color="black"/>
+          </linearGradient>
+          <mask id="separatorMaskB">
+            <rect width="100" height="100" fill="url(#separatorFadeB)"/>
+          </mask>
+        </defs>
+        <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskB)"/>
+      </svg>
+
+      <div class="photo-label"><strong>Python <em>|</em> C++</strong></div>
+    </a>
+<a class="photo-panel panel-3" href="#about">
+      <div class="photo-placeholder"></div>
+      <div class="photo-label"><strong>Software Engineering <em>|</em> R&amp;D</strong></div>
+    </a>
+  </div>
+</section>
+
+<section id="about" class="about-page snap-page">
+  <div class="about-page-inner">
+    <div class="about-page-title reveal replay-item">
+      <span>Introduction</span>
+      <h2>Rigging, tools and systems built around the artist.</h2>
+    </div>
+
+    <div class="about-page-copy reveal replay-item replay-delay-1">
+      <p class="about-lead">
+        I’m a Rigger / Tech Artist with 4+ years of experience, focused on character systems,
+        software tools and technical R&amp;D for animation.
+      </p>
+
+      <p>
+        I develop complex character rigs and custom tools for Maya and Blender, then take the work
+        further into Unreal Engine 5 with Blueprints, node programming and custom GLSL / HLSL shaders.
+      </p>
+
+      <p>
+        Along the way I build utilities, plugins and pipeline systems that remove repetitive work,
+        simplify difficult technical steps and make animation workflows faster and more predictable.
+      </p>
+
+      <div class="skills-block">
+        <span class="skills-title">Skills</span>
+
+        <div class="skill-row">
+          <strong>Programming</strong>
+          <p>Python, MEL, C++, Bash, GLSL / HLSL, UE5 Blueprints, Materials &amp; Shaders</p>
+        </div>
+
+        <div class="skill-row">
+          <strong>UI &amp; Libraries</strong>
+          <p>Qt / PySide6, custom DCC tools and interfaces</p>
+        </div>
+
+        <div class="skill-row">
+          <strong>DCC</strong>
+          <p>Maya, Unreal Engine 5, Blender, currently exploring Houdini</p>
+        </div>
+
+        <div class="skill-row">
+          <strong>Math</strong>
+          <p>Linear algebra, vectors, matrices, quaternions</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="projects" class="projects-page snap-page">
+  <div class="projects-inner">
+    <div class="projects-heading reveal replay-item">
+      <span>Selected work</span>
+      <h2>Things I build.</h2>
+    </div>
+
+    <div class="projects-list">
+      <a class="project-row reveal replay-item replay-project" id="rigs" href="#">
+              <div class="project-meta">
+                <span>Character Rigging</span>
+                <span>Production</span>
+              </div>
+              <div class="project-main">
+                <h3>Rigs</h3>
+                <p>Character and facial rigs, including work around The Amazing Digital Circus.</p>
+              </div>
+              <div class="project-arrow">↗</div>
+            </a>
+      
+      <a class="project-row reveal replay-item replay-project" id="async" href="#">
+              <div class="project-meta">
+                <span>Software / R&amp;D</span>
+                <span>In development</span>
+              </div>
+              <div class="project-main">
+                <h3>ASYNC</h3>
+                <p>From-scratch software focused on technical art and rigging workflows.</p>
+              </div>
+              <div class="project-arrow">↗</div>
+            </a>
+      
+      <a class="project-row reveal replay-item replay-project" id="apex" href="#">
+              <div class="project-meta">
+                <span>Maya / C++</span>
+                <span>New Features</span>
+              </div>
+              <div class="project-main">
+                <h3>APEX</h3>
+                <p>Custom Maya technology, nodes and tools for rigging and production.</p>
+              </div>
+              <div class="project-arrow">↗</div>
+            </a>
+      
+      <a class="project-row reveal replay-item replay-project" id="tools" href="#">
+              <div class="project-meta">
+                <span>Maya / Python</span>
+                <span>Tools</span>
+              </div>
+              <div class="project-main">
+                <h3>TOOLS</h3>
+                <p>Custom Maya tools and Python utilities built to streamline day-to-day production workflows and improve productivity.</p>
+              </div>
+              <div class="project-arrow">↗</div>
+            </a>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact" class="section contact-section snap-page">
+  <div class="contact-box reveal replay-item">
+    <span class="contact-kicker">Contact</span>
+
+    <h2>Let’s build something useful.</h2>
+
+    <div class="contact-links brand-links">
+      <a class="contact-link contact-email-pill" href="mailto:danji.work@icloud.com">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7 12 12.5 19.5 7"/></svg></span>
+        <span>danji.work@icloud.com</span>
+      </a>
+
+      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span><span>X</span>
+      </a>
+
+      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0Z"/></svg></span><span>LinkedIn</span>
+      </a>
+
+      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3a13.924 13.924 0 0 0-.567 1.162 18.27 18.27 0 0 0-6.635 0A12.64 12.64 0 0 0 8.116 3a19.736 19.736 0 0 0-4.432 1.37C.881 8.58.122 12.68.5 16.72a19.91 19.91 0 0 0 5.438 2.75 14.69 14.69 0 0 0 1.337-1.833 12.992 12.992 0 0 1-2.104-1.018c.177-.13.35-.264.517-.401a14.08 14.08 0 0 0 12.622 0c.168.137.34.271.517.401-.67.394-1.37.733-2.104 1.018a14.52 14.52 0 0 0 1.337 1.833 19.87 19.87 0 0 0 5.438-2.75c.444-4.685-.76-8.746-3.181-12.351ZM8.02 14.27c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Zm7.96 0c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Z"/></svg></span><span>Discord</span>
+      </a>
+
+      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M12 .7C5.7.7.7 5.8.7 12.1c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.4.1-3 0 0 1-.3 3.1 1.1a10.6 10.6 0 0 1 5.7 0c2.1-1.4 3.1-1.1 3.1-1.1.6 1.6.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.4-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.1v3.1c0 .3.2.7.8.6a11.4 11.4 0 0 0 7.7-10.8C23.3 5.8 18.3.7 12 .7Z"/></svg></span><span>GitHub</span>
+      </a>
+
+      <a class="contact-link" href="https://docs.google.com/document/d/1bTGBZ60pd0j2EKy7qeQGwk2CaepLK6ldSsnS27nPs9Y/edit?usp=drivesdk" target="_blank" rel="noreferrer">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M10 12h5M10 15h5"/></svg></span><span>Resume</span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <span>© <span id="year"></span> Stepan Devyatkin</span>
+</footer>
+</section>
+</main>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav");
+menuToggle.addEventListener("click", () => {
+  const open = nav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(open));
+});
+document.querySelectorAll(".nav a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+
+/* Hero animations play once on initial visit. */
+const heroRevealItems = [...document.querySelectorAll(".hero .reveal")];
+
+const heroObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      heroObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+heroRevealItems.forEach((el,i)=>{
+  el.style.transitionDelay = `${Math.min(i*45,140)}ms`;
+  heroObserver.observe(el);
+});
+
+/* Other snap pages replay their subtle entrance whenever the page becomes dominant. */
+const replayPages = [...document.querySelectorAll(".snap-page")].filter(
+  page => !page.classList.contains("hero")
+);
+
+const pageObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const page = entry.target;
+
+    if (entry.isIntersecting && entry.intersectionRatio >= 0.62) {
+      page.classList.add("is-active");
+    } else if (!entry.isIntersecting || entry.intersectionRatio < 0.28) {
+      page.classList.remove("is-active");
+    }
+  });
+},{
+  threshold:[0,0.28,0.62,0.85]
+});
+
+replayPages.forEach(page => pageObserver.observe(page));
+
+
+
+const secondPage = document.getElementById("second");
+
+if (secondPage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const parallaxImages = [...secondPage.querySelectorAll(".photo-placeholder")];
+  let ticking = false;
+
+  const updateSecondPageParallax = () => {
+    const rect = secondPage.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    // -1..1 around the center of the viewport.
+    const raw = (rect.top + rect.height * 0.5 - vh * 0.5) / vh;
+    const progress = Math.max(-1, Math.min(1, raw));
+
+    parallaxImages.forEach((image, index) => {
+      const factors = [-1, 0.45, 1];
+      const y = progress * 14 * factors[index];
+      image.style.setProperty("--parallax-y", `${y.toFixed(2)}px`);
+    });
+
+    ticking = false;
+  };
+
+  const requestParallaxUpdate = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateSecondPageParallax);
+    }
+  };
+
+  window.addEventListener("scroll", requestParallaxUpdate, { passive:true });
+  window.addEventListener("resize", requestParallaxUpdate);
+  updateSecondPageParallax();
+}
+</script>
+</body>
+</html>
