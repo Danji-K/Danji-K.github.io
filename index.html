@@ -2526,6 +2526,129 @@ a{color:inherit;text-decoration:none}
     font-size:11.8px !important;
   }
 }
+
+
+/* =========================================================
+   MOBILE SHOWCASE LABEL — keep Python/C++ clear of seam 2
+   ========================================================= */
+@media(max-width:640px){
+  .photo-panel.panel-2 .photo-label{
+    top:56.8% !important;
+  }
+}
+
+.discord-handle{
+  min-height:38px;
+  padding:9px 13px;
+  border:1px solid #29292d;
+  border-radius:999px;
+  color:#bdbdc2;
+  font-size:11px;
+}
+@media(max-width:640px){
+  .discord-handle{
+    min-height:35px;
+    padding:8px 10px;
+    font-size:9.5px;
+  }
+}
+
+
+/* =========================================================
+   ABOUT — role + experience become the actual page title
+   ========================================================= */
+.about-page-inner{
+  grid-template-columns:1.08fr .92fr;
+  gap:clamp(64px,7vw,118px);
+}
+
+.about-page-title h2{
+  max-width:760px;
+  font-size:clamp(52px,5.8vw,82px);
+  line-height:.96;
+  letter-spacing:-.062em;
+}
+
+.about-title-subline{
+  display:inline-block;
+  margin-top:.16em;
+  color:#8c8c92;
+  font-size:.56em;
+  line-height:1.06;
+  letter-spacing:-.045em;
+  font-weight:500;
+}
+
+.about-page-copy .about-lead{
+  max-width:620px;
+  font-size:clamp(19px,1.5vw,22px);
+  line-height:1.5;
+  margin-bottom:24px;
+}
+
+.about-page-copy > p:not(.about-lead){
+  max-width:660px;
+}
+
+/* Mobile: same hierarchy, one clean vertical composition. */
+@media(max-width:640px){
+  .about-page-inner{
+    gap:30px !important;
+  }
+
+  .about-page-title > span{
+    margin-bottom:12px !important;
+  }
+
+  .about-page-title h2{
+    width:100% !important;
+    max-width:350px !important;
+    font-size:clamp(42px,11.5vw,52px) !important;
+    line-height:.96 !important;
+    letter-spacing:-.058em !important;
+  }
+
+  .about-title-subline{
+    margin-top:.22em !important;
+    font-size:.58em !important;
+    line-height:1.08 !important;
+    color:#8c8c92 !important;
+  }
+
+  .about-mobile-copy{
+    max-width:350px !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    margin-bottom:16px !important;
+    font-size:15.5px !important;
+    line-height:1.5 !important;
+  }
+
+  .about-mobile-copy p{
+    font-size:12.8px !important;
+    line-height:1.58 !important;
+  }
+}
+
+@media(max-width:640px) and (max-height:740px){
+  .about-page-inner{
+    gap:24px !important;
+  }
+
+  .about-page-title h2{
+    font-size:clamp(38px,10.6vw,46px) !important;
+  }
+
+  .about-mobile-copy .about-mobile-lead{
+    font-size:14px !important;
+    margin-bottom:12px !important;
+  }
+
+  .about-mobile-copy p{
+    font-size:11.6px !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -2545,10 +2668,11 @@ a{color:inherit;text-decoration:none}
         </span>
         <span>danji.work@icloud.com</span>
       </a>
-      <a href="#rigs">Rigs</a>
-      <a href="#async">ASYNC</a>
-      <a href="#apex">APEX</a>
-      <a href="#tools">TOOLS</a>
+      <a href="rigs.html">Rigs</a>
+      <a href="async.html">ASYNC</a>
+      <a href="apex.html">APEX</a>
+      <a href="tools.html">TOOLS</a>
+      <a href="libraries.html">Libraries</a>
       <a href="https://docs.google.com/document/d/1bTGBZ60pd0j2EKy7qeQGwk2CaepLK6ldSsnS27nPs9Y/edit?usp=drivesdk" target="_blank" rel="noreferrer">Resume</a>
     </nav>
 
@@ -2559,100 +2683,27 @@ a{color:inherit;text-decoration:none}
   <section class="hero snap-page">
     <div class="hero-content">
       <h1 class="reveal">Stepan Devyatkin</h1>
-      <p class="hero-roles reveal">Rigger · Tech Artist · Programmer · Software Engineer · R&amp;D</p>
+      <p class="hero-roles reveal">Rigger · Tech Artist · Programmer · Software Engineer</p>
     </div>
-    <a class="hero-scroll reveal" href="#second">Scroll ↓</a>
+    <a class="hero-scroll reveal" href="#about">Scroll ↓</a>
   </section>
-
-<section id="second" class="showcase showcase-panels snap-page">
-  <div class="showcase-overlay reveal replay-item replay-headline">
-    <h2>Balancing on the edge between art and code.</h2>
-  </div>
-
-  <div class="photo-strip">
-    <span class="mobile-seam mobile-seam-1" aria-hidden="true"></span>
-    <span class="mobile-seam mobile-seam-2" aria-hidden="true"></span>
-    <a class="photo-panel panel-1" href="#about">
-      <div class="photo-placeholder"></div>
-
-      <svg class="panel-separator" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="separatorFadeA" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="white"/>
-            <stop offset="64%" stop-color="white"/>
-            <stop offset="78%" stop-color="#b5b5b5"/>
-            <stop offset="93%" stop-color="black"/>
-            <stop offset="100%" stop-color="black"/>
-          </linearGradient>
-          <mask id="separatorMaskA">
-            <rect width="100" height="100" fill="url(#separatorFadeA)"/>
-          </mask>
-        </defs>
-        <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskA)"/>
-      </svg>
-
-      <div class="photo-label"><strong><span class="label-desktop">Rigging <em>|</em> Tech Art</span><span class="label-mobile">Rigging<br><em>|</em> Tech Art</span></strong></div>
-    </a>
-
-    <a class="photo-panel panel-2" href="#about">
-      <div class="photo-placeholder"></div>
-
-      <svg class="panel-separator" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="separatorFadeB" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="white"/>
-            <stop offset="64%" stop-color="white"/>
-            <stop offset="78%" stop-color="#b5b5b5"/>
-            <stop offset="93%" stop-color="black"/>
-            <stop offset="100%" stop-color="black"/>
-          </linearGradient>
-          <mask id="separatorMaskB">
-            <rect width="100" height="100" fill="url(#separatorFadeB)"/>
-          </mask>
-        </defs>
-        <line class="separator-vector" x1="99" y1="0" x2="1" y2="100" mask="url(#separatorMaskB)"/>
-      </svg>
-
-      <div class="photo-label"><strong><span class="label-desktop">Python <em>|</em> C++</span><span class="label-mobile">Python<br><em>|</em> C++</span></strong></div>
-    </a>
-<a class="photo-panel panel-3" href="#about">
-      <div class="photo-placeholder"></div>
-      <div class="photo-label"><strong><span class="label-desktop">Software Engineering <em>|</em> R&amp;D</span><span class="label-mobile">Software<br><em>|</em> R&amp;D</span></strong></div>
-    </a>
-  </div>
-</section>
 
 <section id="about" class="about-page snap-page">
   <div class="about-page-inner">
     <div class="about-page-title reveal replay-item">
-      <span>Introduction</span>
-      <h2>Rigging, tools and systems built around the artist.</h2>
+      <span>About</span>
+      <h2>Rigger / Tech Artist<br><span class="about-title-subline">with 4+ years of experience.</span></h2>
     </div>
 
     <div class="about-page-copy reveal replay-item replay-delay-1">
       <div class="about-mobile-copy">
-        <p class="about-mobile-lead">
-          I’m a Rigger / Tech Artist focused on character systems, software tools and technical R&amp;D for animation.
-        </p>
-        <p>
-          I build rigs, Maya / Blender tools and UE5 systems that make production workflows faster, cleaner and more predictable.
-        </p>
+        <p class="about-mobile-lead">Passionate about what I do and always happy to help with any questions!</p>
+        <p>I develop complex character rigs and custom plugins for Maya/Blender, then take the work further into UE5 with Blueprints and custom HLSL shaders. Along the way, I build utilities and tools that streamline animation workflows and boost productivity.</p>
       </div>
 
-      <p class="about-lead">
-        I’m a Rigger / Tech Artist with 4+ years of experience, focused on character systems,
-        software tools and technical R&amp;D for animation.
-      </p>
+      <p class="about-lead">Passionate about what I do and always happy to help with any questions!</p>
 
-      <p>
-        I develop complex character rigs and custom tools for Maya and Blender, then take the work
-        further into Unreal Engine 5 with Blueprints, node programming and custom GLSL / HLSL shaders.
-      </p>
-
-      <p>
-        Along the way I build utilities, plugins and pipeline systems that remove repetitive work,
-        simplify difficult technical steps and make animation workflows faster and more predictable.
-      </p>
+      <p>I develop complex character rigs and custom plugins for Maya/Blender, then take the work further into UE5 with Blueprints and custom HLSL shaders. Along the way, I build utilities and tools that streamline animation workflows and boost productivity.</p>
 
       <div class="skills-block">
         <span class="skills-title">Skills</span>
@@ -2664,12 +2715,12 @@ a{color:inherit;text-decoration:none}
 
         <div class="skill-row">
           <strong>UI &amp; Libraries</strong>
-          <p>Qt / PySide6, custom DCC tools and interfaces</p>
+          <p>Qt / PySide6</p>
         </div>
 
         <div class="skill-row">
           <strong>DCC</strong>
-          <p>Maya, Unreal Engine 5, Blender, currently exploring Houdini</p>
+          <p>Maya, Unreal Engine 5, Blender</p>
         </div>
 
         <div class="skill-row">
@@ -2698,12 +2749,12 @@ a{color:inherit;text-decoration:none}
 
       <div class="mobile-skill-row">
         <strong>UI &amp; Libraries</strong>
-        <p>Qt / PySide6, custom DCC tools and interfaces</p>
+        <p>Qt / PySide6</p>
       </div>
 
       <div class="mobile-skill-row">
         <strong>DCC</strong>
-        <p>Maya, Unreal Engine 5, Blender, currently exploring Houdini</p>
+        <p>Maya, Unreal Engine 5, Blender</p>
       </div>
 
       <div class="mobile-skill-row">
@@ -2719,55 +2770,62 @@ a{color:inherit;text-decoration:none}
 <section id="projects" class="projects-page snap-page">
   <div class="projects-inner">
     <div class="projects-heading reveal replay-item">
-      <span>Selected work</span>
-      <h2>Things I build.</h2>
+      <span>My Works</span>
+      <h2>What I do.</h2>
     </div>
 
     <div class="projects-list">
-      <a class="project-row reveal replay-item replay-project" id="rigs" href="#">
+      <a class="project-row reveal replay-item replay-project" id="rigs" href="rigs.html">
               <div class="project-meta">
                 <span>Character Rigging</span>
-                <span>Production</span>
               </div>
               <div class="project-main">
                 <h3>Rigs</h3>
-                <p>Character and facial rigs, including work around The Amazing Digital Circus.</p>
+                <p>Complex character and facial rigs built in Maya and Blender.</p>
               </div>
               <div class="project-arrow">↗</div>
             </a>
       
-      <a class="project-row reveal replay-item replay-project" id="async" href="#">
+      <a class="project-row reveal replay-item replay-project" id="async" href="async.html">
               <div class="project-meta">
                 <span>Software / R&amp;D</span>
-                <span>In development</span>
               </div>
               <div class="project-main">
                 <h3>ASYNC</h3>
-                <p>From-scratch software focused on technical art and rigging workflows.</p>
+                <p>From-scratch software built for rigging and animation workflows.</p>
               </div>
               <div class="project-arrow">↗</div>
             </a>
       
-      <a class="project-row reveal replay-item replay-project" id="apex" href="#">
+      <a class="project-row reveal replay-item replay-project" id="apex" href="apex.html">
               <div class="project-meta">
                 <span>Maya / C++</span>
-                <span>New Features</span>
               </div>
               <div class="project-main">
                 <h3>APEX</h3>
-                <p>Custom Maya technology, nodes and tools for rigging and production.</p>
+                <p>Custom C++ nodes designed to extend Maya with new rigging functionality.</p>
               </div>
               <div class="project-arrow">↗</div>
             </a>
       
-      <a class="project-row reveal replay-item replay-project" id="tools" href="#">
+      <a class="project-row reveal replay-item replay-project" id="tools" href="tools.html">
               <div class="project-meta">
                 <span>Maya / Python</span>
-                <span>Tools</span>
               </div>
               <div class="project-main">
                 <h3>TOOLS</h3>
-                <p>Custom Maya tools and Python utilities built to streamline day-to-day production workflows and improve productivity.</p>
+                <p>Custom Maya tools and Python utilities built to speed up repetitive production workflows.</p>
+              </div>
+              <div class="project-arrow">↗</div>
+            </a>
+
+      <a class="project-row reveal replay-item replay-project" id="libraries" href="libraries.html">
+              <div class="project-meta">
+                <span>Python / C++</span>
+              </div>
+              <div class="project-main">
+                <h3>LIBRARIES</h3>
+                <p>Reusable libraries and technical components built to support rigging, tools and pipeline development.</p>
               </div>
               <div class="project-arrow">↗</div>
             </a>
@@ -2780,7 +2838,7 @@ a{color:inherit;text-decoration:none}
   <div class="contact-box reveal replay-item">
     <span class="contact-kicker">Contact</span>
 
-    <h2>Let’s build something useful.</h2>
+    <h2>Get in touch.</h2>
 
     <div class="contact-links brand-links">
       <a class="contact-link contact-email-pill" href="mailto:danji.work@icloud.com">
@@ -2788,19 +2846,19 @@ a{color:inherit;text-decoration:none}
         <span>danji.work@icloud.com</span>
       </a>
 
-      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+      <span class="contact-link discord-handle">
+        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3a13.924 13.924 0 0 0-.567 1.162 18.27 18.27 0 0 0-6.635 0A12.64 12.64 0 0 0 8.116 3a19.736 19.736 0 0 0-4.432 1.37C.881 8.58.122 12.68.5 16.72a19.91 19.91 0 0 0 5.438 2.75 14.69 14.69 0 0 0 1.337-1.833 12.992 12.992 0 0 1-2.104-1.018c.177-.13.35-.264.517-.401a14.08 14.08 0 0 0 12.622 0c.168.137.34.271.517.401-.67.394-1.37.733-2.104 1.018a14.52 14.52 0 0 0 1.337 1.833 19.87 19.87 0 0 0 5.438-2.75c.444-4.685-.76-8.746-3.181-12.351ZM8.02 14.27c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Zm7.96 0c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Z"/></svg></span><span>danji_animations</span>
+      </span>
+
+      <a class="contact-link" href="https://x.com/danji_k1" target="_blank" rel="noreferrer">
         <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span><span>X</span>
       </a>
 
-      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+      <a class="contact-link" href="https://www.linkedin.com/in/stepan-devyatkin-5277a2353/" target="_blank" rel="noreferrer">
         <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0Z"/></svg></span><span>LinkedIn</span>
       </a>
 
-      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3a13.924 13.924 0 0 0-.567 1.162 18.27 18.27 0 0 0-6.635 0A12.64 12.64 0 0 0 8.116 3a19.736 19.736 0 0 0-4.432 1.37C.881 8.58.122 12.68.5 16.72a19.91 19.91 0 0 0 5.438 2.75 14.69 14.69 0 0 0 1.337-1.833 12.992 12.992 0 0 1-2.104-1.018c.177-.13.35-.264.517-.401a14.08 14.08 0 0 0 12.622 0c.168.137.34.271.517.401-.67.394-1.37.733-2.104 1.018a14.52 14.52 0 0 0 1.337 1.833 19.87 19.87 0 0 0 5.438-2.75c.444-4.685-.76-8.746-3.181-12.351ZM8.02 14.27c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Zm7.96 0c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Z"/></svg></span><span>Discord</span>
-      </a>
-
-      <a class="contact-link" href="#" target="_blank" rel="noreferrer">
+      <a class="contact-link" href="https://github.com/Danji-K" target="_blank" rel="noreferrer">
         <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M12 .7C5.7.7.7 5.8.7 12.1c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.4.1-3 0 0 1-.3 3.1 1.1a10.6 10.6 0 0 1 5.7 0c2.1-1.4 3.1-1.1 3.1-1.1.6 1.6.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.4-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.1v3.1c0 .3.2.7.8.6a11.4 11.4 0 0 0 7.7-10.8C23.3 5.8 18.3.7 12 .7Z"/></svg></span><span>GitHub</span>
       </a>
 
