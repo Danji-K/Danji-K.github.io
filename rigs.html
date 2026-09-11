@@ -1,14 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Stepan Devyatkin — Rigger, Tech Artist, Programmer, Software Engineer, R&D." />
-  <title>Stepan Devyatkin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rigs — Stepan Devyatkin</title>
   <style>
+
 :root {
   --bg:#000;
   --text:#f5f5f7;
@@ -22,7 +19,7 @@
 html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  font-family:"Inter",-apple-rig,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
@@ -914,7 +911,7 @@ a{color:inherit;text-decoration:none}
 }
 
 
-/* Replay-on-section-enter animation system */
+/* Replay-on-section-enter animation rig */
 .replay-item{
   opacity:0;
   transform:translateY(8px);
@@ -1817,7 +1814,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE — rebuilt from one coordinate system
+   MOBILE SHOWCASE — rebuilt from one coordinate rig
    ========================================================= */
 .mobile-seam{display:none}
 
@@ -2315,7 +2312,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABEL SYSTEM
+   MOBILE SHOWCASE LABEL rig
    One axis, one rhythm, one placement rule.
    ========================================================= */
 @media(max-width:640px){
@@ -2363,7 +2360,7 @@ a{color:inherit;text-decoration:none}
 
   /*
     Tiny guide line before each label: makes the three captions
-    feel like one designed system, without turning into a card UI.
+    feel like one designed rig, without turning into a card UI.
   */
   .photo-label::before{
     content:"" !important;
@@ -2649,10 +2646,371 @@ a{color:inherit;text-decoration:none}
     font-size:11.6px !important;
   }
 }
+
+
+html{scroll-behavior:smooth}
+body.detail-body{
+  background:#000;
+  color:#f5f5f7;
+  overflow-x:hidden;
+}
+.detail-main{
+  min-height:100vh;
+  padding:116px 0 72px;
+}
+.detail-wrap{
+  width:min(var(--max),calc(100% - 48px));
+  margin:0 auto;
+}
+.detail-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:52px;
+  color:#8f8f95;
+  font-size:11px;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.detail-back:hover{color:#f5f5f7}
+.detail-kicker{
+  display:block;
+  margin-bottom:16px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.detail-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  gap:clamp(48px,7vw,120px);
+  align-items:end;
+  padding-bottom:54px;
+  border-bottom:1px solid var(--line);
+}
+.detail-title{
+  margin:0;
+  font-size:clamp(68px,9vw,132px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  font-weight:600;
+}
+.detail-summary{
+  max-width:620px;
+  margin:0;
+  color:#b1b1b7;
+  font-size:clamp(18px,1.5vw,22px);
+  line-height:1.55;
+  letter-spacing:-.022em;
+}
+.detail-grid{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:28px;
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+}
+.detail-grid strong{
+  color:#dedee2;
+  font-size:11px;
+  font-weight:600;
+}
+.detail-grid p{
+  margin:0;
+  max-width:760px;
+  color:#85858b;
+  font-size:13px;
+  line-height:1.65;
+}
+.detail-section{
+  padding:72px 0 8px;
+}
+.detail-section h2{
+  max-width:820px;
+  margin:0 0 24px;
+  font-size:clamp(38px,5vw,68px);
+  line-height:.98;
+  letter-spacing:-.055em;
+}
+.detail-section p{
+  max-width:760px;
+  margin:0 0 18px;
+  color:#9a9aa0;
+  font-size:15px;
+  line-height:1.72;
+}
+.detail-note{
+  margin-top:34px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:#66666d;
+  font-size:11px;
+}
+.detail-nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:58px;
+}
+.detail-nav a{
+  border:1px solid #29292d;
+  border-radius:999px;
+  padding:10px 14px;
+  color:#bdbdc2;
+  font-size:11px;
+  text-decoration:none;
+}
+.detail-nav a:hover{
+  color:#fff;
+  border-color:#46464b;
+}
+@media(max-width:640px){
+  .detail-main{padding:92px 0 48px}
+  .detail-wrap{width:calc(100% - 40px)}
+  .detail-back{margin-bottom:36px}
+  .detail-hero{
+    grid-template-columns:1fr;
+    gap:26px;
+    padding-bottom:36px;
+  }
+  .detail-title{
+    font-size:clamp(58px,18vw,78px);
+  }
+  .detail-summary{
+    font-size:16px;
+    line-height:1.5;
+  }
+  .detail-grid{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:18px 0;
+  }
+  .detail-section{
+    padding-top:52px;
+  }
+  .detail-section h2{
+    font-size:clamp(36px,11vw,48px);
+  }
+  .detail-section p{
+    font-size:13px;
+    line-height:1.65;
+  }
+}
+
+  
+
+/* =========================================================
+   RIGS — expanded frameless gallery
+   ========================================================= */
+.rigs-gallery{
+  padding:34px 0 18px;
+  border-bottom:1px solid var(--line);
+}
+
+.rigs-gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.rigs-shot{
+  position:relative;
+  overflow:hidden;
+  background:#000;
+  border:0;
+  border-radius:0;
+}
+
+.rigs-shot-wide{
+  grid-column:1 / -1;
+  aspect-ratio:16 / 9;
+}
+
+.rigs-shot-landscape{
+  aspect-ratio:4 / 3;
+}
+
+.rigs-shot-portrait{
+  aspect-ratio:3 / 4;
+}
+
+.rigs-placeholder{
+  position:absolute;
+  inset:0;
+  background:#0b0b0c;
+}
+
+.rigs-shot-01 .rigs-placeholder{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.018),transparent 28%),
+    linear-gradient(135deg,#111113,#050505 60%,#0c0c0e);
+}
+
+.rigs-shot-02 .rigs-placeholder{
+  background:
+    linear-gradient(145deg,#0d0d0f,#050505 52%,#111113);
+}
+
+.rigs-shot-03 .rigs-placeholder{
+  background:
+    linear-gradient(125deg,#151517,#050505 58%,#0b0b0d);
+}
+
+.rigs-shot-04 .rigs-placeholder{
+  background:
+    linear-gradient(155deg,#0b0b0d,#060606 48%,#141416);
+}
+
+.rigs-shot-05 .rigs-placeholder{
+  background:
+    linear-gradient(135deg,#121214,#050505 56%,#0d0d0f);
+}
+
+.rigs-shot-06 .rigs-placeholder{
+  background:
+    linear-gradient(145deg,#0f0f11,#050505 54%,#111113);
+}
+
+/* Placeholder marker only; remove once real images are added. */
+.rigs-placeholder::after{
+  content:"IMAGE PLACEHOLDER";
+  position:absolute;
+  left:14px;
+  bottom:12px;
+  color:rgba(255,255,255,.20);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.13em;
+}
+
+@media(max-width:640px){
+  .rigs-gallery{
+    padding-top:28px;
+  }
+
+  .rigs-gallery-grid{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .rigs-shot-wide{
+    grid-column:auto;
+    aspect-ratio:16 / 10;
+  }
+
+  .rigs-shot-landscape{
+    aspect-ratio:4 / 3;
+  }
+
+  .rigs-shot-portrait{
+    aspect-ratio:3 / 4;
+  }
+
+  .rigs-placeholder::after{
+    left:10px;
+    bottom:9px;
+    font-size:7px;
+  }
+}
+
+
+/* =========================================================
+   RIGS — tightly packed rectangular gallery
+   ========================================================= */
+.rigs-gallery-grid{
+  display:grid !important;
+  grid-template-columns:repeat(12,1fr) !important;
+  grid-template-rows:repeat(8,1fr) !important;
+  gap:8px !important;
+  aspect-ratio:16 / 10 !important;
+  width:100% !important;
+}
+
+.rigs-shot{
+  min-width:0 !important;
+  min-height:0 !important;
+  aspect-ratio:auto !important;
+  grid-column:auto !important;
+}
+
+.rigs-shot-01{
+  grid-column:1 / 8 !important;
+  grid-row:1 / 5 !important;
+}
+
+.rigs-shot-02{
+  grid-column:8 / 13 !important;
+  grid-row:1 / 5 !important;
+}
+
+.rigs-shot-03{
+  grid-column:1 / 5 !important;
+  grid-row:5 / 9 !important;
+}
+
+.rigs-shot-04{
+  grid-column:5 / 9 !important;
+  grid-row:5 / 9 !important;
+}
+
+.rigs-shot-05{
+  grid-column:9 / 13 !important;
+  grid-row:5 / 7 !important;
+}
+
+.rigs-shot-06{
+  grid-column:9 / 13 !important;
+  grid-row:7 / 9 !important;
+}
+
+.rigs-placeholder{
+  width:100% !important;
+  height:100% !important;
+}
+
+@media(max-width:640px){
+  .rigs-gallery-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    grid-template-rows:repeat(6,1fr) !important;
+    aspect-ratio:4 / 5.2 !important;
+    gap:6px !important;
+  }
+
+  .rigs-shot-01{
+    grid-column:1 / 3 !important;
+    grid-row:1 / 3 !important;
+  }
+
+  .rigs-shot-02{
+    grid-column:1 / 2 !important;
+    grid-row:3 / 5 !important;
+  }
+
+  .rigs-shot-03{
+    grid-column:2 / 3 !important;
+    grid-row:3 / 5 !important;
+  }
+
+  .rigs-shot-04{
+    grid-column:1 / 3 !important;
+    grid-row:5 / 6 !important;
+  }
+
+  .rigs-shot-05{
+    grid-column:1 / 2 !important;
+    grid-row:6 / 7 !important;
+  }
+
+  .rigs-shot-06{
+    grid-column:2 / 3 !important;
+    grid-row:6 / 7 !important;
+  }
+}
 </style>
 </head>
-<body>
-
+<body class="detail-body">
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="#top">Stepan Devyatkin</a>
@@ -2672,287 +3030,56 @@ a{color:inherit;text-decoration:none}
       <a href="async.html">ASYNC</a>
       <a href="apex.html">APEX</a>
       <a href="tools.html">TOOLS</a>
+      <a href="libraries.html">Libraries</a>
       <a href="https://docs.google.com/document/d/1bTGBZ60pd0j2EKy7qeQGwk2CaepLK6ldSsnS27nPs9Y/edit?usp=drivesdk" target="_blank" rel="noreferrer">Resume</a>
     </nav>
 
   </div>
 </header>
+<main class="detail-main">
+  <div class="detail-wrap">
+    <a class="detail-back" href="index.html">← Back to portfolio</a>
 
-<main id="top">
-  <section class="hero snap-page">
-    <div class="hero-content">
-      <h1 class="reveal">Stepan Devyatkin</h1>
-      <p class="hero-roles reveal">Rigger · Tech Artist · Programmer · Software Engineer</p>
-    </div>
-    <a class="hero-scroll reveal" href="#about">Scroll ↓</a>
-  </section>
-
-<section id="about" class="about-page snap-page">
-  <div class="about-page-inner">
-    <div class="about-page-title reveal replay-item">
-      <span>About</span>
-      <h2>Rigger / Tech Artist<br><span class="about-title-subline">with 4+ years of experience.</span></h2>
-    </div>
-
-    <div class="about-page-copy reveal replay-item replay-delay-1">
-      <div class="about-mobile-copy">
-        <p class="about-mobile-lead">Passionate about what I do and always happy to help with any questions!</p>
-        <p>I develop complex character rigs and custom plugins for Maya/Blender, then take the work further into UE5 with Blueprints and custom HLSL shaders. Along the way, I build utilities and tools that streamline animation workflows and boost productivity.</p>
+    <section class="detail-hero">
+      <div>
+        <span class="detail-kicker">Maya / Blender</span>
+        <h1 class="detail-title">Rigs</h1>
       </div>
+      <p class="detail-summary">Complex body and facial rigs built in Maya and Blender.</p>
+    </section>
 
-      <p class="about-lead">Passionate about what I do and always happy to help with any questions!</p>
-
-      <p>I develop complex character rigs and custom plugins for Maya/Blender, then take the work further into UE5 with Blueprints and custom HLSL shaders. Along the way, I build utilities and tools that streamline animation workflows and boost productivity.</p>
-
-      <div class="skills-block">
-        <span class="skills-title">Skills</span>
-
-        <div class="skill-row">
-          <strong>Programming</strong>
-          <p>Python, MEL, C++, Bash, GLSL / HLSL, UE5 Blueprints, Materials &amp; Shaders</p>
-        </div>
-
-        <div class="skill-row">
-          <strong>UI &amp; Libraries</strong>
-          <p>Qt / PySide6</p>
-        </div>
-
-        <div class="skill-row">
-          <strong>DCC</strong>
-          <p>Maya, Unreal Engine 5, Blender</p>
-        </div>
-
-        <div class="skill-row">
-          <strong>Math</strong>
-          <p>Linear algebra, vectors, matrices, quaternions</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section class="mobile-skills-page snap-page">
-  <div class="mobile-skills-inner">
-    <div class="mobile-skills-heading replay-item">
-      <span>Skills</span>
-      <h2>Technical toolkit.</h2>
-    </div>
-
-    <div class="mobile-skills-list replay-item replay-delay-1">
-      <div class="mobile-skill-row">
-        <strong>Programming</strong>
-        <p>Python, MEL, C++, Bash, GLSL / HLSL, UE5 Blueprints, Materials &amp; Shaders</p>
-      </div>
-
-      <div class="mobile-skill-row">
-        <strong>UI &amp; Libraries</strong>
-        <p>Qt / PySide6</p>
-      </div>
-
-      <div class="mobile-skill-row">
-        <strong>DCC</strong>
-        <p>Maya, Unreal Engine 5, Blender</p>
-      </div>
-
-      <div class="mobile-skill-row">
-        <strong>Math</strong>
-        <p>Linear algebra, vectors, matrices, quaternions</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section id="projects" class="projects-page snap-page">
-  <div class="projects-inner">
-    <div class="projects-heading reveal replay-item">
-      <span>My Works</span>
-      <h2>What I do.</h2>
-    </div>
-
-    <div class="projects-list">
-      <a class="project-row reveal replay-item replay-project" id="rigs" href="rigs.html">
-              <div class="project-meta">
-                <span>Character Rigging</span>
-              </div>
-              <div class="project-main">
-                <h3>Rigs</h3>
-                <p>Complex character and facial rigs built in Maya and Blender.</p>
-              </div>
-              <div class="project-arrow">↗</div>
-            </a>
       
-      <a class="project-row reveal replay-item replay-project" id="async" href="async.html">
-              <div class="project-meta">
-                <span>Software / R&amp;D</span>
-              </div>
-              <div class="project-main">
-                <h3>ASYNC</h3>
-                <p>From-scratch software built for rigging and animation workflows.</p>
-              </div>
-              <div class="project-arrow">↗</div>
-            </a>
-      
-      <a class="project-row reveal replay-item replay-project" id="apex" href="apex.html">
-              <div class="project-meta">
-                <span>Maya / C++</span>
-              </div>
-              <div class="project-main">
-                <h3>APEX</h3>
-                <p>Custom C++ nodes designed to extend Maya with new rigging functionality.</p>
-              </div>
-              <div class="project-arrow">↗</div>
-            </a>
-      
-      <a class="project-row reveal replay-item replay-project" id="tools" href="tools.html">
-              <div class="project-meta">
-                <span>Maya / Python</span>
-              </div>
-              <div class="project-main">
-                <h3>TOOLS</h3>
-                <p>Custom Maya tools and Python utilities built to speed up repetitive production workflows.</p>
-              </div>
-              <div class="project-arrow">↗</div>
-            </a>
-    </div>
+
+
+    <section class="rigs-gallery" aria-label="Rigging gallery">
+      <div class="rigs-gallery-grid">
+        <div class="rigs-shot rigs-shot-wide rigs-shot-01"><div class="rigs-placeholder"></div></div>
+
+        <div class="rigs-shot rigs-shot-portrait rigs-shot-02"><div class="rigs-placeholder"></div></div>
+        <div class="rigs-shot rigs-shot-landscape rigs-shot-03"><div class="rigs-placeholder"></div></div>
+
+        <div class="rigs-shot rigs-shot-landscape rigs-shot-04"><div class="rigs-placeholder"></div></div>
+        <div class="rigs-shot rigs-shot-portrait rigs-shot-05"><div class="rigs-placeholder"></div></div>
+
+        <div class="rigs-shot rigs-shot-wide rigs-shot-06"><div class="rigs-placeholder"></div></div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>Character rigs built for intuitive control.</h2>
+      <p>My rigging work focuses on building character and facial rigs that stay practical for animation while remaining technically clean and maintainable.</p>
+      <p>The goal is not only to make a character move, but to give animators controls that feel predictable, responsive and easy to work with.</p>
+
+      <nav class="detail-nav" aria-label="Project pages">
+        <a href="rigs.html">Rigs</a>
+        <a href="async.html">ASYNC</a>
+        <a href="apex.html">APEX</a>
+        <a href="tools.html">TOOLS</a>
+        <a href="libraries.html">Libraries</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </section>
   </div>
-</section>
-
-
-<section id="contact" class="section contact-section snap-page">
-  <div class="contact-box reveal replay-item">
-    <span class="contact-kicker">Contact</span>
-
-    <h2>Get in touch.</h2>
-
-    <div class="contact-links brand-links">
-      <a class="contact-link contact-email-pill" href="mailto:danji.work@icloud.com">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7 12 12.5 19.5 7"/></svg></span>
-        <span>danji.work@icloud.com</span>
-      </a>
-
-      <span class="contact-link discord-handle">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3a13.924 13.924 0 0 0-.567 1.162 18.27 18.27 0 0 0-6.635 0A12.64 12.64 0 0 0 8.116 3a19.736 19.736 0 0 0-4.432 1.37C.881 8.58.122 12.68.5 16.72a19.91 19.91 0 0 0 5.438 2.75 14.69 14.69 0 0 0 1.337-1.833 12.992 12.992 0 0 1-2.104-1.018c.177-.13.35-.264.517-.401a14.08 14.08 0 0 0 12.622 0c.168.137.34.271.517.401-.67.394-1.37.733-2.104 1.018a14.52 14.52 0 0 0 1.337 1.833 19.87 19.87 0 0 0 5.438-2.75c.444-4.685-.76-8.746-3.181-12.351ZM8.02 14.27c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Zm7.96 0c-1.084 0-1.976-.995-1.976-2.217s.873-2.217 1.976-2.217c1.113 0 1.995 1.004 1.976 2.217 0 1.222-.873 2.217-1.976 2.217Z"/></svg></span><span>danji_animations</span>
-      </span>
-
-      <a class="contact-link" href="https://x.com/danji_k1" target="_blank" rel="noreferrer">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></span><span>X</span>
-      </a>
-
-      <a class="contact-link" href="https://www.linkedin.com/in/stepan-devyatkin-5277a2353/" target="_blank" rel="noreferrer">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124ZM7.119 20.452H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0Z"/></svg></span><span>LinkedIn</span>
-      </a>
-
-      <a class="contact-link" href="https://github.com/Danji-K" target="_blank" rel="noreferrer">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="brand-fill"><path d="M12 .7C5.7.7.7 5.8.7 12.1c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.4.1-3 0 0 1-.3 3.1 1.1a10.6 10.6 0 0 1 5.7 0c2.1-1.4 3.1-1.1 3.1-1.1.6 1.6.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.4-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.1v3.1c0 .3.2.7.8.6a11.4 11.4 0 0 0 7.7-10.8C23.3 5.8 18.3.7 12 .7Z"/></svg></span><span>GitHub</span>
-      </a>
-
-      <a class="contact-link" href="https://docs.google.com/document/d/1bTGBZ60pd0j2EKy7qeQGwk2CaepLK6ldSsnS27nPs9Y/edit?usp=drivesdk" target="_blank" rel="noreferrer">
-        <span class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M10 12h5M10 15h5"/></svg></span><span>Resume</span>
-      </a>
-    </div>
-  </div>
-
-  <footer class="footer">
-  <span>© <span id="year"></span> Stepan Devyatkin</span>
-</footer>
-</section>
 </main>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
-menuToggle.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(open));
-});
-document.querySelectorAll(".nav a").forEach(link => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
-});
-
-
-/* Hero animations play once on initial visit. */
-const heroRevealItems = [...document.querySelectorAll(".hero .reveal")];
-
-const heroObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      heroObserver.unobserve(entry.target);
-    }
-  });
-},{threshold:.12});
-
-heroRevealItems.forEach((el,i)=>{
-  el.style.transitionDelay = `${Math.min(i*45,140)}ms`;
-  heroObserver.observe(el);
-});
-
-/* Other snap pages replay their subtle entrance whenever the page becomes dominant. */
-const replayPages = [...document.querySelectorAll(".snap-page")].filter(
-  page => !page.classList.contains("hero")
-);
-
-const pageObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const page = entry.target;
-
-    if (entry.isIntersecting && entry.intersectionRatio >= 0.62) {
-      page.classList.add("is-active");
-    } else if (!entry.isIntersecting || entry.intersectionRatio < 0.28) {
-      page.classList.remove("is-active");
-    }
-  });
-},{
-  threshold:[0,0.28,0.62,0.85]
-});
-
-replayPages.forEach(page => pageObserver.observe(page));
-
-
-
-const secondPage = document.getElementById("second");
-
-if (secondPage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const parallaxImages = [...secondPage.querySelectorAll(".photo-placeholder")];
-  let ticking = false;
-
-  const updateSecondPageParallax = () => {
-    const rect = secondPage.getBoundingClientRect();
-    const vh = window.innerHeight;
-
-    // -1..1 around the center of the viewport.
-    const raw = (rect.top + rect.height * 0.5 - vh * 0.5) / vh;
-    const progress = Math.max(-1, Math.min(1, raw));
-
-    parallaxImages.forEach((image, index) => {
-      const factors = [-1, 0.45, 1];
-      const y = progress * 14 * factors[index];
-      image.style.setProperty("--parallax-y", `${y.toFixed(2)}px`);
-    });
-
-    ticking = false;
-  };
-
-  const requestParallaxUpdate = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(updateSecondPageParallax);
-    }
-  };
-
-  window.addEventListener("scroll", requestParallaxUpdate, { passive:true });
-  window.addEventListener("resize", requestParallaxUpdate);
-  updateSecondPageParallax();
-}
-</script>
 </body>
 </html>
