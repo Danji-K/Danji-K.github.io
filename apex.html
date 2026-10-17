@@ -3060,25 +3060,135 @@ body.detail-body{
   position:relative;
   width:100%;
   aspect-ratio:16/9;
+  touch-action:pan-y;
   background:
     linear-gradient(145deg,#111 0%,#080808 54%,#030303 100%);
   overflow:hidden;
 }
-.node-feature-media::after{
+.node-media-cell::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(180deg,transparent 68%,rgba(0,0,0,.5));
 }
-.node-feature-media span{
+.node-media-track{
+  display:flex;
+  height:100%;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+}
+.node-media-pane{
+  display:flex;
+  flex:0 0 100%;
+  height:100%;
+}
+.node-media-cell{
+  position:relative;
+  flex:1;
+  min-width:0;
+  height:100%;
+}
+/* The Attribute Editor is tall, so it takes a narrow column and the tool fills the rest. */
+.node-media-cell.ae{
+  flex:0 0 32%;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.node-media-cell.ae:only-child{
+  flex:1;
+  border-right:0;
+}
+/* Two shots side by side, split by a hairline of the frame. */
+.node-media-pane.pair{gap:2px}
+.node-media-cell.has-media::after{content:none}
+.node-media-cell video,
+.node-media-cell img{
   position:absolute;
-  z-index:2;
-  left:16px;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+[data-pane="viewport"] video{object-fit:cover}
+.node-media-cell.has-media video,
+.node-media-cell.has-media img{opacity:1}
+.node-media-nav{
+  position:absolute;
+  z-index:3;
+  top:50%;
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  margin-top:-19px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  color:#d6d6da;
+  cursor:pointer;
+  opacity:.7;
+  transition:opacity .18s ease,border-color .18s ease,background .18s ease,color .18s ease;
+}
+.node-media-nav.prev{left:14px}
+.node-media-nav.next{right:14px}
+.node-feature-media:hover .node-media-nav{opacity:1}
+.node-media-nav:hover{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(0,0,0,.62);
+  color:#fff;
+}
+.node-media-nav svg{
+  width:16px;
+  height:16px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+/* Which slide is showing, bottom left, and the dots opposite it: both on the same dark plate as
+   the arrows, so they read over light footage too. */
+.node-media-dots,
+.node-media-caption{
+  position:absolute;
+  z-index:3;
   bottom:14px;
-  color:rgba(255,255,255,.24);
-  font-size:8px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+.node-media-dots{
+  right:14px;
+  display:flex;
+  gap:6px;
+  padding:8px 10px;
+}
+.node-media-caption{
+  left:14px;
+  padding:6px 10px;
+  color:#d6d6da;
+  font-size:9px;
   font-weight:600;
-  letter-spacing:.13em;
+  line-height:1;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  pointer-events:none;
+}
+.node-media-dots i{
+  width:5px;
+  height:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,.28);
+  transition:width .2s ease,background .2s ease;
+}
+.node-media-dots i.is-active{
+  width:14px;
+  background:rgba(255,255,255,.85);
 }
 .node-feature-copy{
   max-width:480px;
@@ -3120,6 +3230,25 @@ body.detail-body{
   }
   .node-feature-media{
     aspect-ratio:16/10;
+  }
+  .node-media-nav{
+    width:32px;
+    height:32px;
+    margin-top:-16px;
+    opacity:.85;
+  }
+  .node-media-nav.prev{left:10px}
+  .node-media-nav.next{right:10px}
+  .node-media-dots,
+  .node-media-caption{bottom:10px}
+  .node-media-caption{
+    left:10px;
+    padding:5px 8px;
+    font-size:8px;
+  }
+  .node-media-dots{
+    right:10px;
+    padding:7px 9px;
   }
   .node-feature-copy{
     max-width:none;
@@ -3254,84 +3383,211 @@ body.detail-body{
       <h2>Nodes overview.</h2>
       <div class="node-feature-list">
         
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="vectorCanvas">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="vectorCanvas media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/vectorCanvas/viewport.mp4" data-poster="media/apex/vectorCanvas/viewport.jpg" aria-label="vectorCanvas in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane pair" inert data-pane="shader" aria-roledescription="slide" aria-label="GLSL Code Execution">
+              <div class="node-media-cell">
+                <img data-src="media/apex/vectorCanvas/shader-1.jpg" alt="vectorCanvas eye through a GLSL CRT shader">
+              </div>
+              <div class="node-media-cell">
+                <img data-src="media/apex/vectorCanvas/shader-2.jpg" alt="Color bars through the CRT shader up close, with scanlines and phosphor cells">
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/vectorCanvas/ae.png" alt="vectorCanvas in the Attribute Editor">
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">Viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">01</span>
-          <h3>rayCastXYZ</h3>
-          <p>Description for this node will go here.</p>
+          <h3>vectorCanvas</h3>
+          <p>Viewport 2.0 texture node that renders NURBS curves as resolution-independent vector shapes, projected through a placement matrix. Curves are grouped into ordered layers with fill and stroke, opacity, stroke alignment, sharp or flat ends and clipping to the layer below, while locators vary stroke width along a curve. A Shadertoy-style GLSL code field (mainImage, iTime, iResolution) can process the canvas directly in the shader.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="meshBasedCtrlShape">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="meshBasedCtrlShape media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/meshBasedCtrlShape/viewport.mp4" data-poster="media/apex/meshBasedCtrlShape/viewport.jpg" aria-label="meshBasedCtrlShape in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport 2">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/meshBasedCtrlShape/viewport_2.mp4" data-poster="media/apex/meshBasedCtrlShape/viewport_2.jpg" aria-label="meshBasedCtrlShape in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor &amp; Script">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/meshBasedCtrlShape/ae.png" alt="meshBasedCtrlShape in the Attribute Editor">
+              </div>
+              <div class="node-media-cell tool">
+                <video muted loop playsinline preload="none" data-src="media/apex/meshBasedCtrlShape/tool.mp4" data-poster="media/apex/meshBasedCtrlShape/tool.jpg" aria-label="meshBasedCtrlShape setup tool"></video>
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">Viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">02</span>
-          <h3>twistExtractor</h3>
-          <p>Description for this node will go here.</p>
+          <h3>meshBasedCtrlShape</h3>
+          <p>Custom Maya surface shape for mesh-based rig controls. Each control is built from selected faces of an input mesh and drawn through Viewport 2.0, with local translate, rotate and scale and an offset along the face normals. Normal, hover and selected states have their own color and opacity, with flat, wire and lit shading styles. Hover is tracked in screen space through Qt, geometry is cached and GPU-deformed where supported, and optional Catmull-Clark smoothing comes from OpenSubdiv.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="rayCastXYZ">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="rayCastXYZ media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/rayCastXYZ/viewport.mp4" data-poster="media/apex/rayCastXYZ/viewport.jpg" aria-label="rayCastXYZ in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport 2">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/rayCastXYZ/viewport_2.mp4" data-poster="media/apex/rayCastXYZ/viewport_2.jpg" aria-label="rayCastXYZ in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/rayCastXYZ/ae.png" alt="rayCastXYZ in the Attribute Editor">
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">Viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">03</span>
-          <h3>matrixRibbon</h3>
-          <p>Description for this node will go here.</p>
+          <h3>rayCastXYZ</h3>
+          <p>Batched ray-to-mesh projection powered by Intel Embree 4. Projects an array of input matrices onto a mesh along a configurable ray direction, with optional alignment to interpolated surface normals, hit reporting, closest-mesh and border fallback handling, and cached evaluation for repeated queries. Built for surface-driven rig elements, projected controls and attachments to deforming geometry.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="matrixRibbon">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="matrixRibbon media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/matrixRibbon/viewport.mp4" data-poster="media/apex/matrixRibbon/viewport.jpg" aria-label="matrixRibbon in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor &amp; Script">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/matrixRibbon/ae.png" alt="matrixRibbon in the Attribute Editor">
+              </div>
+              <div class="node-media-cell tool">
+                <video muted loop playsinline preload="none" data-src="media/apex/matrixRibbon/tool.mp4" data-poster="media/apex/matrixRibbon/tool.jpg" aria-label="matrixRibbon setup tool"></video>
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">Viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">04</span>
-          <h3>matrixSurface</h3>
-          <p>Description for this node will go here.</p>
+          <h3>matrixRibbon</h3>
+          <p>Generates an array of matrices along a Bézier curve defined by control matrices, with the curve degree following the number of controls. Position and scale are sampled with Bernstein weights, while orientation travels along a rotation-minimizing frame with control-driven roll. Adds twist controls, first-sample aiming, wave deformation with start/end dropoff, per-sample rest lengths and ramp-based volume compensation, plus a builder UI for setup and rest-length capture.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="matrixSurface">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="matrixSurface media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Viewport">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/matrixSurface/viewport.mp4" data-poster="media/apex/matrixSurface/viewport.jpg" aria-label="matrixSurface in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor &amp; Script">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/matrixSurface/ae.png" alt="matrixSurface in the Attribute Editor">
+              </div>
+              <div class="node-media-cell tool">
+                <video muted loop playsinline preload="none" data-src="media/apex/matrixSurface/tool.mp4" data-poster="media/apex/matrixSurface/tool.jpg" aria-label="matrixSurface setup tool"></video>
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">Viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">05</span>
-          <h3>rbfSolver</h3>
-          <p>Description for this node will go here.</p>
+          <h3>matrixSurface</h3>
+          <p>Generates a matrix grid from a row-major grid of controls using B-spline / de Boor sampling. U and V control counts, degrees and sample counts are independent, and output orientation blends between control orientation and a tangent-derived surface frame. A captured rest state drives deformation from the live controls, with normal-direction waves and configurable U/V aim axes.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="matrixRivet">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="matrixRivet media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Used For Buttons">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/matrixRivet/viewport.mp4" data-poster="media/apex/matrixRivet/viewport.jpg" aria-label="matrixRivet in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/matrixRivet/ae.png" alt="matrixRivet in the Attribute Editor">
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">viewport</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">06</span>
           <h3>matrixRivet</h3>
-          <p>Description for this node will go here.</p>
+          <p>Matrix-based skinned attachment. Rest positions and skin weights are captured from selected mesh vertices during setup; at runtime the node evaluates from those stored samples and live influence matrices, with no live geometry input. Supports multiple samples, arbitrary influence weights, bind-pre matrices, inherited scale, parent-space output, maintain offset and direct offsetParentMatrix workflows, with a manager tool for weights, rest capture and influence inspection.</p>
         </div>
       </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
+      <article class="node-feature" id="twistExtractor">
+        <div class="node-feature-media" aria-roledescription="carousel" aria-label="twistExtractor media">
+          <div class="node-media-track">
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="With Twist Extractor">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/twistExtractor/viewport.mp4" data-poster="media/apex/twistExtractor/viewport.jpg" aria-label="twistExtractor in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane is-active" data-pane="viewport" aria-roledescription="slide" aria-label="Without Twist Extractor">
+              <div class="node-media-cell">
+                <video muted loop playsinline preload="none" data-src="media/apex/twistExtractor/withoutTwist.mp4" data-poster="media/apex/twistExtractor/withoutTwist.jpg" aria-label="twistExtractor in the Maya viewport"></video>
+              </div>
+            </div>
+            <div class="node-media-pane" inert data-pane="editor" aria-roledescription="slide" aria-label="Attribute Editor">
+              <div class="node-media-cell ae">
+                <img data-src="media/apex/twistExtractor/ae.png" alt="twistExtractor in the Attribute Editor">
+              </div>
+            </div>
+          </div>
+          <button class="node-media-nav prev" type="button" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+          <button class="node-media-nav next" type="button" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+          <div class="node-media-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></div>
+          <span class="node-media-caption" aria-hidden="true">With Twist Extractor</span>
+        </div>
         <div class="node-feature-copy">
           <span class="node-feature-index">07</span>
-          <h3>skinSlide</h3>
-          <p>Description for this node will go here.</p>
-        </div>
-      </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
-        <div class="node-feature-copy">
-          <span class="node-feature-index">08</span>
-          <h3>apexRenderTarget</h3>
-          <p>Description for this node will go here.</p>
-        </div>
-      </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
-        <div class="node-feature-copy">
-          <span class="node-feature-index">09</span>
-          <h3>screenSpaceMask</h3>
-          <p>Description for this node will go here.</p>
-        </div>
-      </article>
-      <article class="node-feature">
-        <div class="node-feature-media"><span>GIF / VIDEO</span></div>
-        <div class="node-feature-copy">
-          <span class="node-feature-index">10</span>
-          <h3>meshBasedCtrlShape</h3>
-          <p>Description for this node will go here.</p>
+          <h3>twistExtractor</h3>
+          <p>Extracts twist around a chosen X, Y or Z axis from a target matrix relative to a base matrix. Evaluation is based on relative quaternion rotation and outputs a single Maya angle, ready for forearm roll, spine twist and distributed rotation setups.</p>
         </div>
       </article>
       </div>
@@ -3357,5 +3613,92 @@ body.detail-body{
 
 </main>
 
+<script>
+/* Node media: each frame is a carousel; files load once it nears the viewport, videos play only on the visible slide. */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function loadPane(pane){
+  pane.querySelectorAll(".node-media-cell").forEach(cell => {
+    const media = cell.querySelector("video, img");
+    if (!media || media.getAttribute("src")) return;
+    media.addEventListener(media.tagName === "VIDEO" ? "loadeddata" : "load", () => cell.classList.add("has-media"), {once:true});
+    if (media.dataset.poster) media.poster = media.dataset.poster;
+    if (media.tagName === "VIDEO") media.preload = "auto";
+    media.src = media.dataset.src;
+  });
+}
+
+function syncPlayback(frame){
+  frame.querySelectorAll("video").forEach(video => {
+    const visible = frame.classList.contains("in-view") && video.closest(".node-media-pane").classList.contains("is-active");
+    if (visible && !reduceMotion) video.play().catch(() => {});
+    else video.pause();
+  });
+}
+
+const frameObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const frame = entry.target;
+    frame.classList.toggle("in-view", entry.isIntersecting);
+    if (entry.isIntersecting) loadPane(frame.querySelector(".node-media-pane.is-active"));
+    syncPlayback(frame);
+  });
+},{rootMargin:"200px 0px"});
+
+document.querySelectorAll(".node-feature-media").forEach(frame => {
+  const track = frame.querySelector(".node-media-track");
+  const panes = [...frame.querySelectorAll(".node-media-pane")];
+  const dots = [...frame.querySelectorAll(".node-media-dots i")];
+  const caption = frame.querySelector(".node-media-caption");
+  let index = 0;
+
+  function go(next){
+    index = (next + panes.length) % panes.length;
+    track.style.transform = `translateX(${-index * 100}%)`;
+    panes.forEach((pane, i) => {
+      pane.classList.toggle("is-active", i === index);
+      pane.inert = i !== index;
+    });
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+    caption.textContent = panes[index].getAttribute("aria-label");
+
+    panes[index].querySelectorAll("video").forEach(video => { video.currentTime = 0; });
+    loadPane(panes[index]);
+    syncPlayback(frame);
+  }
+
+  frame.showPane = key => {
+    const i = panes.findIndex(pane => pane.dataset.pane === key);
+    if (i >= 0) go(i);
+  };
+
+  frame.querySelector(".node-media-nav.prev").addEventListener("click", () => go(index - 1));
+  frame.querySelector(".node-media-nav.next").addEventListener("click", () => go(index + 1));
+
+  let startX = null;
+  let startY = 0;
+  frame.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+  },{passive:true});
+  frame.addEventListener("touchend", e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    startX = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
+  });
+
+  frameObserver.observe(frame);
+});
+
+/* apex.html#matrixRibbon opens that node, #matrixRibbon-editor also turns to its editor slide. */
+const [focusNode, focusPane] = decodeURIComponent(location.hash.slice(1)).split("-");
+const focusArticle = focusNode && document.getElementById(focusNode);
+if (focusArticle) {
+  if (focusPane) focusArticle.querySelector(".node-feature-media").showPane(focusPane);
+  focusArticle.scrollIntoView({block:"center", behavior:"instant"});
+}
+</script>
 </body>
 </html>
