@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>RIGS — Stepan Devyatkin</title>
+  <title>RIGS | Stepan Devyatkin</title>
   <style>
 
 :root {
@@ -972,7 +972,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE — conservative version.
+   MOBILE: conservative version.
    Same visual language as desktop, no structural redesign.
    ========================================================= */
 .label-mobile{display:none}
@@ -1037,7 +1037,7 @@ a{color:inherit;text-decoration:none}
     font-size:9px;
   }
 
-  /* Second page: preserve the desktop idea — three vertical slices */
+  /* Second page: preserve the desktop idea, three vertical slices */
   .showcase-panels{
     width:100%;
     height:100svh;
@@ -1319,7 +1319,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE PAGE 3 FIT — keep v31 look, remove inner scrolling
+   MOBILE PAGE 3 FIT: keep v31 look, remove inner scrolling
    ========================================================= */
 .about-mobile-copy{display:none}
 
@@ -1419,7 +1419,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE CONTACT — balanced two-row layout
+   MOBILE CONTACT: balanced two-row layout
    ========================================================= */
 @media(max-width:640px){
   .contact-links{
@@ -1472,7 +1472,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — tighter vertical rhythm
+   MOBILE INTRO: tighter vertical rhythm
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -1537,7 +1537,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — fill the whole screen, not just the top
+   MOBILE INTRO: fill the whole screen, not just the top
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -1814,7 +1814,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE — rebuilt from one coordinate rig
+   MOBILE SHOWCASE: rebuilt from one coordinate rig
    ========================================================= */
 .mobile-seam{display:none}
 
@@ -2011,7 +2011,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABELS — restore capability text
+   MOBILE SHOWCASE LABELS: restore capability text
    ========================================================= */
 @media(max-width:640px){
   .photo-label{
@@ -2047,20 +2047,20 @@ a{color:inherit;text-decoration:none}
     margin:0 .34em !important;
   }
 
-  /* First band — bottom-left */
+  /* First band: bottom-left */
   .photo-panel.panel-1 .photo-label{
     left:20px !important;
     top:27.3% !important;
   }
 
-  /* Middle band — bottom-right to avoid the central headline */
+  /* Middle band: bottom-right to avoid the central headline */
   .photo-panel.panel-2 .photo-label{
     right:20px !important;
     top:58.1% !important;
     text-align:right;
   }
 
-  /* Third band — lower-left */
+  /* Third band: lower-left */
   .photo-panel.panel-3 .photo-label{
     left:20px !important;
     top:90.2% !important;
@@ -2098,7 +2098,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABELS — single line only
+   MOBILE SHOWCASE LABELS: single line only
    ========================================================= */
 @media(max-width:640px){
   .photo-label .label-desktop{
@@ -2139,12 +2139,12 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE — refined visual language
+   MOBILE SHOWCASE: refined visual language
    Keep geometry, make it feel like the desktop version.
    ========================================================= */
 @media(max-width:640px){
 
-  /* Softer image treatment — closer to desktop. */
+  /* Softer image treatment: closer to desktop. */
   .photo-placeholder{
     inset:-12px -4px !important;
     transform:scale(1.03) !important;
@@ -2393,7 +2393,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE LABEL DETAIL — Python guide line on the right
+   MOBILE LABEL DETAIL: Python guide line on the right
    ========================================================= */
 @media(max-width:640px){
   .photo-panel.panel-2 .photo-label::before{
@@ -2420,7 +2420,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — one centered composition / one left axis
+   MOBILE INTRO: one centered composition / one left axis
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -2526,7 +2526,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABEL — keep Python/C++ clear of seam 2
+   MOBILE SHOWCASE LABEL: keep Python/C++ clear of seam 2
    ========================================================= */
 @media(max-width:640px){
   .photo-panel.panel-2 .photo-label{
@@ -2552,7 +2552,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   ABOUT — role + experience become the actual page title
+   ABOUT: role + experience become the actual page title
    ========================================================= */
 .about-page-inner{
   grid-template-columns:1.08fr .92fr;
@@ -2802,210 +2802,169 @@ body.detail-body{
   
 
 /* =========================================================
-   RIGS — expanded frameless gallery
+   RIGS: cinematic strips
+   Clips: media/rigs/<rig>/<clip>.mp4, poster <clip>.jpg.
    ========================================================= */
-.rigs-gallery{
-  padding:34px 0 18px;
+.rigs-strips{
+  padding:40px 0 64px;
   border-bottom:1px solid var(--line);
 }
 
-.rigs-gallery-grid{
+.strips-group + .strips-group{
+  margin-top:54px;
+}
+
+.strips-label{
+  display:block;
+  margin-bottom:18px;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+.strips-list{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:8px;
 }
 
-.rigs-shot{
+.rig-strip{
   position:relative;
+  aspect-ratio:21 / 9;
   overflow:hidden;
-  background:#000;
-  border:0;
-  border-radius:0;
+  background:linear-gradient(145deg,#111 0%,#080808 54%,#030303 100%);
+  cursor:pointer;
+  transition:aspect-ratio .45s cubic-bezier(.22,.8,.24,1);
 }
 
-.rigs-shot-wide{
-  grid-column:1 / -1;
+.rig-strip.is-open{
   aspect-ratio:16 / 9;
+  cursor:default;
 }
 
-.rigs-shot-landscape{
-  aspect-ratio:4 / 3;
-}
-
-.rigs-shot-portrait{
-  aspect-ratio:3 / 4;
-}
-
-.rigs-placeholder{
+/* Placeholder marker until the clip exists */
+.rig-strip::before{
+  content:"VIDEO";
   position:absolute;
-  inset:0;
-  background:#0b0b0c;
-}
-
-.rigs-shot-01 .rigs-placeholder{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.018),transparent 28%),
-    linear-gradient(135deg,#111113,#050505 60%,#0c0c0e);
-}
-
-.rigs-shot-02 .rigs-placeholder{
-  background:
-    linear-gradient(145deg,#0d0d0f,#050505 52%,#111113);
-}
-
-.rigs-shot-03 .rigs-placeholder{
-  background:
-    linear-gradient(125deg,#151517,#050505 58%,#0b0b0d);
-}
-
-.rigs-shot-04 .rigs-placeholder{
-  background:
-    linear-gradient(155deg,#0b0b0d,#060606 48%,#141416);
-}
-
-.rigs-shot-05 .rigs-placeholder{
-  background:
-    linear-gradient(135deg,#121214,#050505 56%,#0d0d0f);
-}
-
-.rigs-shot-06 .rigs-placeholder{
-  background:
-    linear-gradient(145deg,#0f0f11,#050505 54%,#111113);
-}
-
-/* Placeholder marker only; remove once real images are added. */
-.rigs-placeholder::after{
-  content:"IMAGE PLACEHOLDER";
-  position:absolute;
-  left:14px;
-  bottom:12px;
-  color:rgba(255,255,255,.20);
+  left:18px;
+  top:17px;
+  color:rgba(255,255,255,.18);
   font-size:8px;
   font-weight:600;
   letter-spacing:.13em;
 }
 
+/* Text contrast gradient */
+.rig-strip::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(270deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.45) 30%,rgba(0,0,0,0) 60%);
+  pointer-events:none;
+}
+
+.rig-strip video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.rig-strip-copy{
+  position:absolute;
+  right:clamp(20px,3vw,40px);
+  bottom:clamp(18px,3vw,36px);
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:12px;
+}
+
+.rig-strip h3{
+  margin:0;
+  font-size:clamp(34px,5.4vw,78px);
+  line-height:.9;
+  letter-spacing:-.065em;
+  font-weight:600;
+  text-align:right;
+}
+
+.rig-strip p{
+  max-width:360px;
+  margin:0;
+  color:rgba(245,245,247,.74);
+  font-size:13.5px;
+  line-height:1.5;
+  text-align:right;
+}
+
+/* Clip buttons: open strip only */
+.rig-clips{
+  display:none;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px;
+  margin-top:4px;
+}
+
+.rig-strip.is-open .rig-clips{
+  display:flex;
+  animation:rig-clips-in .25s ease;
+}
+
+@keyframes rig-clips-in{
+  from{opacity:0}
+}
+
+.rig-clips button{
+  appearance:none;
+  padding:6px 11px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(0,0,0,.35);
+  color:#c9c9ce;
+  font:inherit;
+  font-size:10.5px;
+  cursor:pointer;
+}
+
+.rig-clips button[aria-pressed="true"]{
+  border-color:#f5f5f7;
+  background:#f5f5f7;
+  color:#000;
+}
+
 @media(max-width:640px){
-  .rigs-gallery{
+  .rigs-strips{
     padding-top:28px;
   }
 
-  .rigs-gallery-grid{
-    grid-template-columns:1fr;
-    gap:8px;
+  .strips-group + .strips-group{
+    margin-top:42px;
   }
 
-  .rigs-shot-wide{
-    grid-column:auto;
-    aspect-ratio:16 / 10;
+  .strips-list{
+    gap:6px;
   }
 
-  .rigs-shot-landscape{
-    aspect-ratio:4 / 3;
+  .rig-strip{
+    aspect-ratio:16 / 9;
   }
 
-  .rigs-shot-portrait{
-    aspect-ratio:3 / 4;
+  .rig-strip.is-open{
+    aspect-ratio:4 / 5;
   }
 
-  .rigs-placeholder::after{
-    left:10px;
-    bottom:9px;
-    font-size:7px;
-  }
-}
-
-
-/* =========================================================
-   RIGS — tightly packed rectangular gallery
-   ========================================================= */
-.rigs-gallery-grid{
-  display:grid !important;
-  grid-template-columns:repeat(12,1fr) !important;
-  grid-template-rows:repeat(8,1fr) !important;
-  gap:8px !important;
-  aspect-ratio:16 / 10 !important;
-  width:100% !important;
-}
-
-.rigs-shot{
-  min-width:0 !important;
-  min-height:0 !important;
-  aspect-ratio:auto !important;
-  grid-column:auto !important;
-}
-
-.rigs-shot-01{
-  grid-column:1 / 8 !important;
-  grid-row:1 / 5 !important;
-}
-
-.rigs-shot-02{
-  grid-column:8 / 13 !important;
-  grid-row:1 / 5 !important;
-}
-
-.rigs-shot-03{
-  grid-column:1 / 5 !important;
-  grid-row:5 / 9 !important;
-}
-
-.rigs-shot-04{
-  grid-column:5 / 9 !important;
-  grid-row:5 / 9 !important;
-}
-
-.rigs-shot-05{
-  grid-column:9 / 13 !important;
-  grid-row:5 / 7 !important;
-}
-
-.rigs-shot-06{
-  grid-column:9 / 13 !important;
-  grid-row:7 / 9 !important;
-}
-
-.rigs-placeholder{
-  width:100% !important;
-  height:100% !important;
-}
-
-@media(max-width:640px){
-  .rigs-gallery-grid{
-    grid-template-columns:repeat(2,1fr) !important;
-    grid-template-rows:repeat(6,1fr) !important;
-    aspect-ratio:4 / 5.2 !important;
-    gap:6px !important;
+  /* Description: open strip only */
+  .rig-strip:not(.is-open) p{
+    display:none;
   }
 
-  .rigs-shot-01{
-    grid-column:1 / 3 !important;
-    grid-row:1 / 3 !important;
-  }
-
-  .rigs-shot-02{
-    grid-column:1 / 2 !important;
-    grid-row:3 / 5 !important;
-  }
-
-  .rigs-shot-03{
-    grid-column:2 / 3 !important;
-    grid-row:3 / 5 !important;
-  }
-
-  .rigs-shot-04{
-    grid-column:1 / 3 !important;
-    grid-row:5 / 6 !important;
-  }
-
-  .rigs-shot-05{
-    grid-column:1 / 2 !important;
-    grid-row:6 / 7 !important;
-  }
-
-  .rigs-shot-06{
-    grid-column:2 / 3 !important;
-    grid-row:6 / 7 !important;
+  .rig-strip p{
+    font-size:13px;
   }
 }
 </style>
@@ -3050,17 +3009,92 @@ body.detail-body{
       
 
 
-    <section class="rigs-gallery" aria-label="Rigging gallery">
-      <div class="rigs-gallery-grid">
-        <div class="rigs-shot rigs-shot-wide rigs-shot-01"><div class="rigs-placeholder"></div></div>
-
-        <div class="rigs-shot rigs-shot-portrait rigs-shot-02"><div class="rigs-placeholder"></div></div>
-        <div class="rigs-shot rigs-shot-landscape rigs-shot-03"><div class="rigs-placeholder"></div></div>
-
-        <div class="rigs-shot rigs-shot-landscape rigs-shot-04"><div class="rigs-placeholder"></div></div>
-        <div class="rigs-shot rigs-shot-portrait rigs-shot-05"><div class="rigs-placeholder"></div></div>
-
-        <div class="rigs-shot rigs-shot-wide rigs-shot-06"><div class="rigs-placeholder"></div></div>
+    <section class="rigs-strips" aria-label="Rigs">
+      <div class="strips-group">
+        <span class="strips-label">Maya</span>
+        <div class="strips-list">
+          <article class="rig-strip" id="mr-puzzles" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/mr-puzzles/body.mp4" poster="media/rigs/mr-puzzles/body.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Mr. Puzzles</h3>
+              <p>A good baguette crackles when you squeeze it, and the crumb inside is full of uneven holes.</p>
+              <div class="rig-clips">
+                <button type="button" data-clip="media/rigs/mr-puzzles/body" aria-pressed="true">Body</button>
+                <button type="button" data-clip="media/rigs/mr-puzzles/face" aria-pressed="false">Face</button>
+              </div>
+            </div>
+          </article>
+          <article class="rig-strip" id="caine" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/caine/body.mp4" poster="media/rigs/caine/body.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Caine</h3>
+              <p>By French law a traditional baguette is flour, water, salt and yeast, and nothing else.</p>
+              <div class="rig-clips">
+                <button type="button" data-clip="media/rigs/caine/body" aria-pressed="true">Body</button>
+                <button type="button" data-clip="media/rigs/caine/face" aria-pressed="false">Face</button>
+              </div>
+            </div>
+          </article>
+          <article class="rig-strip" id="jax" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/jax/body.mp4" poster="media/rigs/jax/body.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Jax</h3>
+              <p>The crust gets its shine from steam in the first minutes of baking.</p>
+              <div class="rig-clips">
+                <button type="button" data-clip="media/rigs/jax/body" aria-pressed="true">Body</button>
+                <button type="button" data-clip="media/rigs/jax/face" aria-pressed="false">Face</button>
+              </div>
+            </div>
+          </article>
+          <article class="rig-strip" id="facial-rig" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/facial-rig/face.mp4" poster="media/rigs/facial-rig/face.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Facial rig</h3>
+              <p>The cuts along the top let the dough open up in the oven instead of tearing.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="strips-group">
+        <span class="strips-label">Blender</span>
+        <div class="strips-list">
+          <article class="rig-strip" id="jax-blender" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/jax-blender/body.mp4" poster="media/rigs/jax-blender/body.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Jax</h3>
+              <p>A baguette is at its best within a few hours of leaving the oven.</p>
+              <div class="rig-clips">
+                <button type="button" data-clip="media/rigs/jax-blender/body" aria-pressed="true">Body</button>
+                <button type="button" data-clip="media/rigs/jax-blender/face" aria-pressed="false">Face</button>
+              </div>
+            </div>
+          </article>
+          <article class="rig-strip" id="red" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/red/beak.mp4" poster="media/rigs/red/beak.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>Red</h3>
+              <p>Tear it, don't slice it: the crust shatters and the crumb stays soft.</p>
+              <div class="rig-clips">
+                <button type="button" data-clip="media/rigs/red/beak" aria-pressed="true">Beak</button>
+                <button type="button" data-clip="media/rigs/red/eyes" aria-pressed="false">Eyes</button>
+              </div>
+            </div>
+          </article>
+          <article class="rig-strip" id="repo-truck" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/repo-truck/wheels.mp4" poster="media/rigs/repo-truck/wheels.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>R.E.P.O. Truck</h3>
+              <p>Around six billion baguettes are baked in France every year.</p>
+            </div>
+          </article>
+          <article class="rig-strip" id="peak" tabindex="0">
+            <video muted loop playsinline preload="none" data-src="media/rigs/peak/shots.mp4" poster="media/rigs/peak/shots.jpg"></video>
+            <div class="rig-strip-copy">
+              <h3>PEAK</h3>
+              <p>The end piece is called the quignon, and it rarely makes it home.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -3079,5 +3113,50 @@ body.detail-body{
     </section>
   </div>
 </main>
+
+<script>
+  // Lazy-load and play clips only while visible
+  const visible = new IntersectionObserver(entries => {
+    for (const { target: video, isIntersecting } of entries) {
+      if (isIntersecting) {
+        if (!video.getAttribute("src")) video.src = video.dataset.src;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    }
+  }, { threshold: 0.2 });
+
+  const strips = [...document.querySelectorAll(".rig-strip")];
+
+  for (const strip of strips) {
+    const video = strip.querySelector("video");
+    visible.observe(video);
+
+    const open = () => strips.forEach(other => other.classList.toggle("is-open", other === strip));
+    strip.addEventListener("click", open);
+    strip.addEventListener("keydown", event => {
+      if (event.target === strip && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        open();
+      }
+    });
+
+    // Clip buttons
+    for (const button of strip.querySelectorAll(".rig-clips button")) {
+      button.addEventListener("click", event => {
+        event.stopPropagation();
+        for (const other of button.parentElement.children) {
+          other.setAttribute("aria-pressed", String(other === button));
+        }
+        video.dataset.src = `${button.dataset.clip}.mp4`;
+        video.poster = `${button.dataset.clip}.jpg`;
+        video.src = video.dataset.src;
+        video.play().catch(() => {});
+      });
+    }
+  }
+</script>
+
 </body>
 </html>

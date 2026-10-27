@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ASYNC — Stepan Devyatkin</title>
+  <title>ASYNC | Stepan Devyatkin</title>
   <style>
 
 :root {
@@ -972,7 +972,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE — conservative version.
+   MOBILE: conservative version.
    Same visual language as desktop, no structural redesign.
    ========================================================= */
 .label-mobile{display:none}
@@ -1037,7 +1037,7 @@ a{color:inherit;text-decoration:none}
     font-size:9px;
   }
 
-  /* Second page: preserve the desktop idea — three vertical slices */
+  /* Second page: preserve the desktop idea, three vertical slices */
   .showcase-panels{
     width:100%;
     height:100svh;
@@ -1319,7 +1319,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE PAGE 3 FIT — keep v31 look, remove inner scrolling
+   MOBILE PAGE 3 FIT: keep v31 look, remove inner scrolling
    ========================================================= */
 .about-mobile-copy{display:none}
 
@@ -1419,7 +1419,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE CONTACT — balanced two-row layout
+   MOBILE CONTACT: balanced two-row layout
    ========================================================= */
 @media(max-width:640px){
   .contact-links{
@@ -1472,7 +1472,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — tighter vertical rhythm
+   MOBILE INTRO: tighter vertical rhythm
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -1537,7 +1537,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — fill the whole screen, not just the top
+   MOBILE INTRO: fill the whole screen, not just the top
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -1814,7 +1814,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE — rebuilt from one coordinate system
+   MOBILE SHOWCASE: rebuilt from one coordinate system
    ========================================================= */
 .mobile-seam{display:none}
 
@@ -2011,7 +2011,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABELS — restore capability text
+   MOBILE SHOWCASE LABELS: restore capability text
    ========================================================= */
 @media(max-width:640px){
   .photo-label{
@@ -2047,20 +2047,20 @@ a{color:inherit;text-decoration:none}
     margin:0 .34em !important;
   }
 
-  /* First band — bottom-left */
+  /* First band: bottom-left */
   .photo-panel.panel-1 .photo-label{
     left:20px !important;
     top:27.3% !important;
   }
 
-  /* Middle band — bottom-right to avoid the central headline */
+  /* Middle band: bottom-right to avoid the central headline */
   .photo-panel.panel-2 .photo-label{
     right:20px !important;
     top:58.1% !important;
     text-align:right;
   }
 
-  /* Third band — lower-left */
+  /* Third band: lower-left */
   .photo-panel.panel-3 .photo-label{
     left:20px !important;
     top:90.2% !important;
@@ -2098,7 +2098,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABELS — single line only
+   MOBILE SHOWCASE LABELS: single line only
    ========================================================= */
 @media(max-width:640px){
   .photo-label .label-desktop{
@@ -2139,12 +2139,12 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE — refined visual language
+   MOBILE SHOWCASE: refined visual language
    Keep geometry, make it feel like the desktop version.
    ========================================================= */
 @media(max-width:640px){
 
-  /* Softer image treatment — closer to desktop. */
+  /* Softer image treatment: closer to desktop. */
   .photo-placeholder{
     inset:-12px -4px !important;
     transform:scale(1.03) !important;
@@ -2393,7 +2393,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE LABEL DETAIL — Python guide line on the right
+   MOBILE LABEL DETAIL: Python guide line on the right
    ========================================================= */
 @media(max-width:640px){
   .photo-panel.panel-2 .photo-label::before{
@@ -2420,7 +2420,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE INTRO — one centered composition / one left axis
+   MOBILE INTRO: one centered composition / one left axis
    ========================================================= */
 @media(max-width:640px){
   .about-page{
@@ -2526,7 +2526,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   MOBILE SHOWCASE LABEL — keep Python/C++ clear of seam 2
+   MOBILE SHOWCASE LABEL: keep Python/C++ clear of seam 2
    ========================================================= */
 @media(max-width:640px){
   .photo-panel.panel-2 .photo-label{
@@ -2552,7 +2552,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* =========================================================
-   ABOUT — role + experience become the actual page title
+   ABOUT: role + experience become the actual page title
    ========================================================= */
 .about-page-inner{
   grid-template-columns:1.08fr .92fr;
@@ -2802,7 +2802,7 @@ body.detail-body{
   
 
 /* =========================================================
-   ASYNC — standalone visual page
+   ASYNC: standalone visual page
    ========================================================= */
 body.detail-body{
   overflow-x:hidden;
@@ -2900,28 +2900,97 @@ body.detail-body{
   font-weight:600;
 }
 
-.async-feature-placeholder-grid{
+.async-feature-list{
+  border-top:1px solid var(--line);
+}
+
+.async-feature{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  grid-template-columns:minmax(0,1.28fr) minmax(320px,.72fr);
+  gap:clamp(38px,5vw,82px);
+  align-items:center;
+  min-height:520px;
+  padding:54px 0;
+  border-bottom:1px solid var(--line);
 }
 
-.async-feature-placeholder{
-  aspect-ratio:4 / 3;
-  background:#050505;
+/* Feature video slot (placeholder for now) */
+.async-feature-media{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:linear-gradient(145deg,#111 0%,#080808 54%,#030303 100%);
 }
 
-.async-feature-placeholder::after{
-  content:"FEATURE";
-  display:flex;
-  align-items:flex-end;
-  height:100%;
-  box-sizing:border-box;
-  padding:14px;
+.async-feature-media::after{
+  content:"PREVIEW";
+  position:absolute;
+  left:16px;
+  bottom:14px;
   color:rgba(255,255,255,.18);
   font-size:8px;
   font-weight:600;
   letter-spacing:.13em;
+}
+
+.async-feature-copy{
+  max-width:480px;
+}
+
+.async-feature-index{
+  display:block;
+  margin-bottom:20px;
+  color:#55555b;
+  font-size:10px;
+  letter-spacing:.09em;
+}
+
+.async-feature h3{
+  margin:0 0 24px;
+  font-size:clamp(28px,3vw,46px);
+  line-height:.95;
+  letter-spacing:-.06em;
+  font-weight:600;
+}
+
+.async-feature p{
+  margin:0;
+  color:#96969c;
+  font-size:16px;
+  line-height:1.67;
+  letter-spacing:-.015em;
+}
+
+@media(max-width:800px){
+  .async-feature{
+    grid-template-columns:1fr;
+    gap:24px;
+    min-height:0;
+    padding:32px 0 42px;
+  }
+
+  .async-feature-media{
+    aspect-ratio:16 / 10;
+  }
+
+  .async-feature-copy{
+    max-width:none;
+  }
+
+  .async-feature-index{
+    margin-bottom:12px;
+  }
+
+  .async-feature h3{
+    margin-bottom:16px;
+    font-size:clamp(24px,7.5vw,34px);
+  }
+
+  .async-feature p{
+    font-size:14px;
+    line-height:1.62;
+  }
 }
 
 @media(max-width:640px){
@@ -2958,16 +3027,11 @@ body.detail-body{
     margin-bottom:34px;
     font-size:clamp(44px,13vw,58px);
   }
-
-  .async-feature-placeholder-grid{
-    grid-template-columns:1fr;
-    gap:8px;
-  }
 }
 
 
 /* =========================================================
-   ASYNC HERO — full bleed under header, centered title
+   ASYNC HERO: full bleed under header, centered title
    ========================================================= */
 .async-hero{
   min-height:100svh !important;
@@ -3008,7 +3072,7 @@ body.detail-body{
 
 
 /* =========================================================
-   ASYNC HERO COPY — calmer, project-focused hierarchy
+   ASYNC HERO COPY: calmer, project-focused hierarchy
    ========================================================= */
 .async-hero-copy{
   position:absolute;
@@ -3070,6 +3134,91 @@ body.detail-body{
     font-size:11px;
   }
 }
+
+/* =========================================================
+   ASYNC: under construction tape
+   Static, corner to corner across the hero; also locks page scroll.
+   ========================================================= */
+html,
+body{
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+
+/* Size container for the tape angle and length */
+.async-backdrop{
+  container-type:size;
+}
+
+.async-tape{
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:3;
+  width:150%;
+  overflow:hidden;
+  transform:translate(-50%,-50%) rotate(-30deg);
+  background:#ffd21f;
+  color:#0a0a0a;
+  box-shadow:0 18px 44px rgba(0,0,0,.5);
+  pointer-events:none;
+}
+
+/* Corner-to-corner angle and length */
+@supports (width:hypot(1px,1px)) and (width:1cqw) and (transform:rotate(atan2(1px,1px))){
+  .async-tape{
+    width:calc(hypot(100cqw,100cqh) + 160px);
+    transform:translate(-50%,-50%) rotate(atan2(-100cqh,100cqw));
+  }
+}
+
+/* Hazard stripe edges */
+.async-tape::before,
+.async-tape::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height:7px;
+  background:repeating-linear-gradient(-45deg,#0a0a0a 0 10px,#ffd21f 10px 20px);
+}
+
+.async-tape::before{top:0}
+.async-tape::after{bottom:0}
+
+.async-tape-track{
+  display:flex;
+  justify-content:center;
+  gap:56px;
+  padding:17px 0;
+}
+
+.async-tape-track span{
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+@media(max-width:640px){
+  .async-tape::before,
+  .async-tape::after{
+    height:5px;
+  }
+
+  .async-tape-track{
+    gap:36px;
+    padding:12px 0;
+  }
+
+  .async-tape-track span{
+    font-size:11px;
+  }
+}
 </style>
 </head>
 <body class="detail-body">
@@ -3106,6 +3255,24 @@ body.detail-body{
         <h1>ASYNC</h1>
         <p>Rigging and animation software, built from scratch.</p>
       </div>
+      <div class="async-tape" role="note" aria-label="This page is under construction">
+        <div class="async-tape-track" aria-hidden="true">
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+          <span>Under construction</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3114,10 +3281,71 @@ body.detail-body{
       <span class="async-section-kicker">Overview</span>
       <h2>Features overview.</h2>
 
-      <div class="async-feature-placeholder-grid" aria-label="Future ASYNC features">
-        <div class="async-feature-placeholder"></div>
-        <div class="async-feature-placeholder"></div>
-        <div class="async-feature-placeholder"></div>
+      <div class="async-feature-list">
+        <article class="async-feature" id="rigging">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">01</span>
+            <h3>Rig graph</h3>
+            <p>Rigs are evaluated by vdf, the dataflow engine from Pixar's OpenExec, inside the core rather than on top of it. Joints follow Maya's model with joint orient and segment scale compensation, transforms compose in Maya's matrix order in double precision, and controls are transforms with Bezier curve shapes, zeroed through offsetParentMatrix. Matrices travel as plugs between Mult, Inverse, Compose and Decompose Matrix nodes. Skinning is a stage on the mesh, reading per-joint weights against a bind pose, and the rigging editor draws the same graph the core evaluates.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="animation">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">02</span>
+            <h3>Animation</h3>
+            <p>An animated channel is a curve node wired into the attribute and fed by a time node, so keys, drivers and rig connections are one mechanism. Keys are Pixar's ts knots, with held, linear and curved segments and looping extrapolation for cycles. The curve editor draws what the rig actually computes, and the timeline shows and edits the keys of the selection. Animation sequences are clips with their own range, speed and repeat; camera cuts switch the view along the timeline, and imported sound plays with the playhead.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="core">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">03</span>
+            <h3>Command core</h3>
+            <p>A DCC core written from scratch in C++20. Every edit is a command carrying its own inverse, so undo belongs to the command stack instead of being bolted on, and a drag runs as a draft that commits one command on release. Commands are deterministic and serialize to bytes, which makes the file format, replay and multiplayer one mechanism. Meshes are edited in a non-manifold radial-edge structure and drawn from flat arrays. Python scripting goes through a Maya-style cmds API with a script editor, and the core runs headless under more than 600 test cases and invariant fuzzing.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="viewport">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">04</span>
+            <h3>Hydra viewport</h3>
+            <p>A C++ viewport that draws through USD's Hydra with Storm, inside a PySide6 interface. When a rig only moves points, new positions are copied through a cached index map instead of rebuilding the mesh: 2.3&nbsp;ms against 56&nbsp;ms on a million faces. A subdivision left last on the modifier stack runs on the GPU, so the rig moves the cage and the card makes the surface. The transform gizmo is a 2D overlay with Maya's middle-drag, and the camera orbits like Maya or flies like Unreal's editor camera.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="modelling">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">05</span>
+            <h3>Modelling</h3>
+            <p>Polygon modelling on vertices, edges and faces: extrude in three modes, inset, bevel, loop cut, dissolve, delete, triangulate and Catmull-Clark subdivision, plus six primitives. Extrude and inset are modal, as in Blender: the mouse drives their value, and an Adjust Last Operation panel re-runs them with new parameters. A non-destructive modifier stack holds smooth, displace, cast, simple deform and subdivision until it is applied, and a UV editor lays a shape's texture coordinates out flat.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="multiplayer">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">06</span>
+            <h3>Multiplayer</h3>
+            <p>Several people edit one scene live. Commands are deterministic, so only the command crosses the wire and never its result, and every peer ends up with the same bytes. The room shares one undo timeline, and the status bar says whose step was taken back. What somebody is holding is drawn as presence, an outline in their colour with their name, without touching anybody's document; each person keeps their own cameras, and playback is shared. A headless server, async-serve, can host the room, admit people, relay and save the scene.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="rendering">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">07</span>
+            <h3>Cycles and Unreal</h3>
+            <p>Renderers are Hydra delegates, switched from the viewport. Cycles path traces on the GPU, with its 95 shading nodes in the shader editor. Unreal Engine's deferred renderer runs inside ASYNC through hdUnreal, a Hydra delegate built on UE's renderer without the rest of the engine: sky atmosphere, height fog, volumetric clouds, UE's lights, all 213 post process settings and landscape-style grass on any mesh. A compositing graph runs over the finished frame.</p>
+          </div>
+        </article>
+        <article class="async-feature" id="plugins">
+          <div class="async-feature-media" aria-hidden="true"></div>
+          <div class="async-feature-copy">
+            <span class="async-feature-index">08</span>
+            <h3>Plug-ins and levels</h3>
+            <p>A C++ plug-in can bring modifier stages, operators, new kinds of objects and panels, and they get undo, saving and replication for free; a scene opened without one of its plug-ins keeps that data untouched. The ones that ship include FBX import, audio, both renderers, multiplayer and three procedural level generators. Backrooms, Poolrooms and Level 94 build whole places from a seed and a few dozen parameters as a live modifier, rebuilt under the cursor as a value is dragged.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
