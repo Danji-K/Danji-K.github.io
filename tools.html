@@ -3211,7 +3211,7 @@ body.detail-body{
 
 .tool-card{
   margin:0;
-  background:linear-gradient(145deg,#111 0%,#080808 54%,#030303 100%);
+  background:#0b0b0c;
   border:1px solid #17171a;
 }
 
@@ -3232,15 +3232,6 @@ body.detail-body{
 .tool-card-copy{
   padding:18px 22px 22px;
   border-top:1px solid rgba(255,255,255,.05);
-}
-
-.tool-card-tag{
-  display:block;
-  margin-bottom:10px;
-  color:#55555b;
-  font-size:10px;
-  letter-spacing:.09em;
-  text-transform:uppercase;
 }
 
 .tool-card h3{
@@ -3350,7 +3341,6 @@ body.detail-body{
             <img src="media/tools/controlShapes.png" width="356" height="692" alt="Control Shapes window: a searchable grid of NURBS shapes, a color palette and name, facing, size, lock and rotate settings" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Controls</span>
             <h3>Control Shapes</h3>
             <p>Searchable library of NURBS control shapes. Sets color, facing axis, size, rotation and locked channels, then creates a new control with an offset group or adds, replaces and reparents shapes on existing ones. A shape you add to the library gets its icon rendered automatically, in a Render Icon window where you turn it to the angle you want.</p>
           </figcaption>
@@ -3360,7 +3350,6 @@ body.detail-body{
             <img src="media/tools/editAttributes.png" width="324" height="442" alt="Edit Attributes window with an attribute list and name, default, limits, enum and flag fields" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Attributes</span>
             <h3>Edit Attributes</h3>
             <p>Searches a node&rsquo;s attributes and edits them in place: name, nice name, default value, hard and soft limits, enum fields and keyable, channel box and locked flags.</p>
           </figcaption>
@@ -3370,7 +3359,6 @@ body.detail-body{
             <img src="media/tools/ikFkCreator.png" width="320" height="602" alt="IK/FK Creator window with name, IK controller, FK controller, output and orientation fields" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Rigging</span>
             <h3>IK/FK Creator</h3>
             <p>Builds an IK/FK limb without Maya&rsquo;s IK solver: everything is computed with math and matrix nodes, so it evaluates very fast. The scene holds only the controls and three locators that output the result as transforms. Pole axis and bend direction are set in the window.</p>
           </figcaption>
@@ -3380,7 +3368,6 @@ body.detail-body{
             <img src="media/tools/curvePins.png" width="284" height="138" alt="Curve Pins window with curve name, count, mirror and start / end range fields" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Rigging</span>
             <h3>Curve Pins</h3>
             <p>Pins a set number of transforms along a curve between start and end percentages, with an option to mirror them to the right side.</p>
           </figcaption>
@@ -3390,7 +3377,6 @@ body.detail-body{
             <img src="media/tools/opmParent.png" width="384" height="114" alt="OPM Parent window with from / to name patterns, step and offset" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Rigging</span>
             <h3>OPM Parent</h3>
             <p>Connects nodes in pairs through offsetParentMatrix, matching the two sides by name pattern, with step and offset to control the pairing.</p>
           </figcaption>
@@ -3400,7 +3386,6 @@ body.detail-body{
             <img src="media/tools/jointUnderControl.png" width="304" height="162" alt="Joint Under Control window with name replace fields and three parenting modes" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Rigging</span>
             <h3>Joint Under Control</h3>
             <p>Creates a joint for each selected control, named by find and replace. The joint is parented under the control or driven through offsetParentMatrix, directly or through a multMatrix.</p>
           </figcaption>
@@ -3410,7 +3395,6 @@ body.detail-body{
             <img src="media/tools/matrixRibbon.png" width="320" height="170" alt="Matrix Ribbon window with prefix, count and output settings" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">APEX</span>
             <h3>Matrix Ribbon</h3>
             <p>Builder UI for the matrixRibbon node: prefix, sample count and joint or locator output, plus rest-length capture.</p>
             <a class="tool-card-link" href="apex.html#matrixRibbon">matrixRibbon node &rarr;</a>
@@ -3421,7 +3405,6 @@ body.detail-body{
             <img src="media/tools/matrixSurface.png" width="320" height="262" alt="Matrix Surface window with prefix, U / V control counts, degree, samples and output settings" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">APEX</span>
             <h3>Matrix Surface</h3>
             <p>Builder UI for the matrixSurface node: U and V control counts, degree, U and V sample counts and output type, plus rest-state capture.</p>
             <a class="tool-card-link" href="apex.html#matrixSurface">matrixSurface node &rarr;</a>
@@ -3432,7 +3415,6 @@ body.detail-body{
             <img src="media/tools/matrixBasedRibbon.png" width="280" height="268" alt="Matrix Based Ribbon Tool window with ribbon type, limb name, suffix, joint count, aim axis and output type" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Rigging</span>
             <h3>Matrix Based Ribbon</h3>
             <p>Generates a matrix-based ribbon for a limb, with a choice of ribbon type, joint count, naming, aim axis and output type.</p>
           </figcaption>
@@ -3442,7 +3424,6 @@ body.detail-body{
             <img src="media/tools/proxyAttr.png" width="332" height="156" alt="Proxy Attr window with source attribute, new name and targets fields" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Attributes</span>
             <h3>Proxy Attr</h3>
             <p>Adds a source attribute to target nodes as a proxy under a new name, so the same channel shows up on several controls.</p>
           </figcaption>
@@ -3452,7 +3433,6 @@ body.detail-body{
             <img src="media/tools/meshBasedCtrls.png" width="274" height="359" alt="Mesh Based Controls Tool window with edit mode, face offset, opacity and color settings" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">APEX</span>
             <h3>Mesh Based Ctrls</h3>
             <p>Setup tool for meshBasedCtrlShape: edit mode for picking faces, face offset, normal, selection and highlight opacity and color, then create, select and reparent mesh-based controls.</p>
             <a class="tool-card-link" href="apex.html#meshBasedCtrlShape">meshBasedCtrlShape node &rarr;</a>
@@ -3463,7 +3443,6 @@ body.detail-body{
             <img src="media/tools/copyAttr.png" width="332" height="133" alt="Copy Attr window with source attribute and targets fields" loading="lazy" decoding="async">
           </div>
           <figcaption class="tool-card-copy">
-            <span class="tool-card-tag">Attributes</span>
             <h3>Copy Attr</h3>
             <p>Copies a source attribute onto a set of target nodes.</p>
           </figcaption>

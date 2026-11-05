@@ -2834,25 +2834,6 @@ body.detail-body{
   aspect-ratio:21 / 9;
   overflow:hidden;
   background:linear-gradient(145deg,#111 0%,#080808 54%,#030303 100%);
-  cursor:pointer;
-  transition:aspect-ratio .45s cubic-bezier(.22,.8,.24,1);
-}
-
-.rig-strip.is-open{
-  aspect-ratio:16 / 9;
-  cursor:default;
-}
-
-/* Placeholder marker until the clip exists */
-.rig-strip::before{
-  content:"VIDEO";
-  position:absolute;
-  left:18px;
-  top:17px;
-  color:rgba(255,255,255,.18);
-  font-size:8px;
-  font-weight:600;
-  letter-spacing:.13em;
 }
 
 /* Text contrast gradient */
@@ -2864,12 +2845,93 @@ body.detail-body{
   pointer-events:none;
 }
 
-.rig-strip video{
+.rig-media-track{
+  display:flex;
+  height:100%;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+}
+
+.rig-media-pane{
+  position:relative;
+  flex:0 0 100%;
+  height:100%;
+}
+
+.rig-media-pane video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
+}
+
+.rig-media-nav{
+  position:absolute;
+  z-index:3;
+  top:50%;
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  margin-top:-19px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  color:#d6d6da;
+  cursor:pointer;
+  opacity:.7;
+  transition:opacity .18s ease,border-color .18s ease,background .18s ease,color .18s ease;
+}
+
+.rig-media-nav.prev{left:14px}
+.rig-media-nav.next{right:14px}
+.rig-strip:hover .rig-media-nav{opacity:1}
+
+.rig-media-nav:hover{
+  border-color:rgba(255,255,255,.32);
+  background:rgba(0,0,0,.62);
+  color:#fff;
+}
+
+.rig-media-nav svg{
+  width:16px;
+  height:16px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.rig-media-dots{
+  position:absolute;
+  z-index:3;
+  left:14px;
+  bottom:14px;
+  display:flex;
+  gap:6px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+
+.rig-media-dots i{
+  width:5px;
+  height:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,.28);
+  transition:width .2s ease,background .2s ease;
+}
+
+.rig-media-dots i.is-active{
+  width:14px;
+  background:rgba(255,255,255,.85);
 }
 
 .rig-strip-copy{
@@ -2901,42 +2963,6 @@ body.detail-body{
   text-align:right;
 }
 
-/* Clip buttons: open strip only */
-.rig-clips{
-  display:none;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-  gap:6px;
-  margin-top:4px;
-}
-
-.rig-strip.is-open .rig-clips{
-  display:flex;
-  animation:rig-clips-in .25s ease;
-}
-
-@keyframes rig-clips-in{
-  from{opacity:0}
-}
-
-.rig-clips button{
-  appearance:none;
-  padding:6px 11px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:999px;
-  background:rgba(0,0,0,.35);
-  color:#c9c9ce;
-  font:inherit;
-  font-size:10.5px;
-  cursor:pointer;
-}
-
-.rig-clips button[aria-pressed="true"]{
-  border-color:#f5f5f7;
-  background:#f5f5f7;
-  color:#000;
-}
-
 @media(max-width:640px){
   .rigs-strips{
     padding-top:28px;
@@ -2954,17 +2980,112 @@ body.detail-body{
     aspect-ratio:16 / 9;
   }
 
-  .rig-strip.is-open{
-    aspect-ratio:4 / 5;
-  }
-
-  /* Description: open strip only */
-  .rig-strip:not(.is-open) p{
+  .rig-strip p{
     display:none;
   }
 
-  .rig-strip p{
-    font-size:13px;
+  .rig-media-nav{
+    width:32px;
+    height:32px;
+    margin-top:-16px;
+    opacity:.85;
+  }
+
+  .rig-media-nav.prev{left:10px}
+  .rig-media-nav.next{right:10px}
+
+  .rig-media-dots{
+    left:10px;
+    bottom:10px;
+  }
+}
+
+html,
+body{
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+
+.rigs-tape-frame{
+  position:absolute;
+  top:48px;
+  left:0;
+  z-index:40;
+  width:100%;
+  height:calc(100svh - 48px);
+  overflow:hidden;
+  pointer-events:none;
+  container-type:size;
+}
+
+.rigs-tape{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:150%;
+  overflow:hidden;
+  transform:translate(-50%,-50%) rotate(-30deg);
+  background:#ffd21f;
+  color:#0a0a0a;
+  box-shadow:0 18px 44px rgba(0,0,0,.5);
+}
+
+@supports (width:hypot(1px,1px)) and (width:1cqw) and (transform:rotate(atan2(1px,1px))){
+  .rigs-tape{
+    width:calc(hypot(100cqw,100cqh) + 160px);
+    transform:translate(-50%,-50%) rotate(atan2(-100cqh,100cqw));
+  }
+}
+
+.rigs-tape::before,
+.rigs-tape::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  height:7px;
+  background:repeating-linear-gradient(-45deg,#0a0a0a 0 10px,#ffd21f 10px 20px);
+}
+
+.rigs-tape::before{top:0}
+.rigs-tape::after{bottom:0}
+
+.rigs-tape-track{
+  display:flex;
+  justify-content:center;
+  gap:56px;
+  padding:17px 0;
+}
+
+.rigs-tape-track span{
+  display:flex;
+  flex:0 0 auto;
+  align-items:center;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+@media(max-width:640px){
+  .rigs-tape-frame{
+    top:54px;
+    height:calc(100svh - 54px);
+  }
+
+  .rigs-tape::before,
+  .rigs-tape::after{
+    height:5px;
+  }
+
+  .rigs-tape-track{
+    gap:36px;
+    padding:12px 0;
+  }
+
+  .rigs-tape-track span{
+    font-size:11px;
   }
 }
 </style>
@@ -2994,6 +3115,26 @@ body.detail-body{
 
   </div>
 </header>
+<div class="rigs-tape-frame">
+  <div class="rigs-tape" role="note" aria-label="This page is under construction">
+    <div class="rigs-tape-track" aria-hidden="true">
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+      <span>Under construction</span>
+    </div>
+  </div>
+</div>
 <main class="detail-main">
   <div class="detail-wrap">
     <a class="detail-back" href="index.html">← Back to portfolio</a>
@@ -3013,41 +3154,49 @@ body.detail-body{
       <div class="strips-group">
         <span class="strips-label">Maya</span>
         <div class="strips-list">
-          <article class="rig-strip" id="mr-puzzles" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/mr-puzzles/body.mp4" poster="media/rigs/mr-puzzles/body.jpg"></video>
+          <article class="rig-strip" id="mr-puzzles">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/mr-puzzles/body.mp4" data-poster="media/rigs/mr-puzzles/body.jpg"></video></div>
+              <div class="rig-media-pane" inert><video muted loop playsinline preload="none" data-src="media/rigs/mr-puzzles/face.mp4" data-poster="media/rigs/mr-puzzles/face.jpg"></video></div>
+            </div>
+            <button class="rig-media-nav prev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+            <button class="rig-media-nav next" type="button" aria-label="Next video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+            <div class="rig-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
             <div class="rig-strip-copy">
               <h3>Mr. Puzzles</h3>
               <p>A good baguette crackles when you squeeze it, and the crumb inside is full of uneven holes.</p>
-              <div class="rig-clips">
-                <button type="button" data-clip="media/rigs/mr-puzzles/body" aria-pressed="true">Body</button>
-                <button type="button" data-clip="media/rigs/mr-puzzles/face" aria-pressed="false">Face</button>
-              </div>
             </div>
           </article>
-          <article class="rig-strip" id="caine" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/caine/body.mp4" poster="media/rigs/caine/body.jpg"></video>
+          <article class="rig-strip" id="caine">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/caine/body.mp4" data-poster="media/rigs/caine/body.jpg"></video></div>
+              <div class="rig-media-pane" inert><video muted loop playsinline preload="none" data-src="media/rigs/caine/face.mp4" data-poster="media/rigs/caine/face.jpg"></video></div>
+            </div>
+            <button class="rig-media-nav prev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+            <button class="rig-media-nav next" type="button" aria-label="Next video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+            <div class="rig-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
             <div class="rig-strip-copy">
               <h3>Caine</h3>
               <p>By French law a traditional baguette is flour, water, salt and yeast, and nothing else.</p>
-              <div class="rig-clips">
-                <button type="button" data-clip="media/rigs/caine/body" aria-pressed="true">Body</button>
-                <button type="button" data-clip="media/rigs/caine/face" aria-pressed="false">Face</button>
-              </div>
             </div>
           </article>
-          <article class="rig-strip" id="jax" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/jax/body.mp4" poster="media/rigs/jax/body.jpg"></video>
+          <article class="rig-strip" id="jax">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/jax/body.mp4" data-poster="media/rigs/jax/body.jpg"></video></div>
+              <div class="rig-media-pane" inert><video muted loop playsinline preload="none" data-src="media/rigs/jax/face.mp4" data-poster="media/rigs/jax/face.jpg"></video></div>
+            </div>
+            <button class="rig-media-nav prev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+            <button class="rig-media-nav next" type="button" aria-label="Next video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+            <div class="rig-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
             <div class="rig-strip-copy">
               <h3>Jax</h3>
               <p>The crust gets its shine from steam in the first minutes of baking.</p>
-              <div class="rig-clips">
-                <button type="button" data-clip="media/rigs/jax/body" aria-pressed="true">Body</button>
-                <button type="button" data-clip="media/rigs/jax/face" aria-pressed="false">Face</button>
-              </div>
             </div>
           </article>
-          <article class="rig-strip" id="facial-rig" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/facial-rig/face.mp4" poster="media/rigs/facial-rig/face.jpg"></video>
+          <article class="rig-strip" id="facial-rig">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/facial-rig/face.mp4" data-poster="media/rigs/facial-rig/face.jpg"></video></div>
+            </div>
             <div class="rig-strip-copy">
               <h3>Facial rig</h3>
               <p>The cuts along the top let the dough open up in the oven instead of tearing.</p>
@@ -3058,37 +3207,45 @@ body.detail-body{
       <div class="strips-group">
         <span class="strips-label">Blender</span>
         <div class="strips-list">
-          <article class="rig-strip" id="jax-blender" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/jax-blender/body.mp4" poster="media/rigs/jax-blender/body.jpg"></video>
+          <article class="rig-strip" id="jax-blender">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/jax-blender/body.mp4" data-poster="media/rigs/jax-blender/body.jpg"></video></div>
+              <div class="rig-media-pane" inert><video muted loop playsinline preload="none" data-src="media/rigs/jax-blender/face.mp4" data-poster="media/rigs/jax-blender/face.jpg"></video></div>
+            </div>
+            <button class="rig-media-nav prev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+            <button class="rig-media-nav next" type="button" aria-label="Next video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+            <div class="rig-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
             <div class="rig-strip-copy">
               <h3>Jax</h3>
               <p>A baguette is at its best within a few hours of leaving the oven.</p>
-              <div class="rig-clips">
-                <button type="button" data-clip="media/rigs/jax-blender/body" aria-pressed="true">Body</button>
-                <button type="button" data-clip="media/rigs/jax-blender/face" aria-pressed="false">Face</button>
-              </div>
             </div>
           </article>
-          <article class="rig-strip" id="red" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/red/beak.mp4" poster="media/rigs/red/beak.jpg"></video>
+          <article class="rig-strip" id="red">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/red/beak.mp4" data-poster="media/rigs/red/beak.jpg"></video></div>
+              <div class="rig-media-pane" inert><video muted loop playsinline preload="none" data-src="media/rigs/red/eyes.mp4" data-poster="media/rigs/red/eyes.jpg"></video></div>
+            </div>
+            <button class="rig-media-nav prev" type="button" aria-label="Previous video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6"></path></svg></button>
+            <button class="rig-media-nav next" type="button" aria-label="Next video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"></path></svg></button>
+            <div class="rig-media-dots" aria-hidden="true"><i class="is-active"></i><i></i></div>
             <div class="rig-strip-copy">
               <h3>Red</h3>
               <p>Tear it, don't slice it: the crust shatters and the crumb stays soft.</p>
-              <div class="rig-clips">
-                <button type="button" data-clip="media/rigs/red/beak" aria-pressed="true">Beak</button>
-                <button type="button" data-clip="media/rigs/red/eyes" aria-pressed="false">Eyes</button>
-              </div>
             </div>
           </article>
-          <article class="rig-strip" id="repo-truck" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/repo-truck/wheels.mp4" poster="media/rigs/repo-truck/wheels.jpg"></video>
+          <article class="rig-strip" id="repo-truck">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/repo-truck/wheels.mp4" data-poster="media/rigs/repo-truck/wheels.jpg"></video></div>
+            </div>
             <div class="rig-strip-copy">
               <h3>R.E.P.O. Truck</h3>
               <p>Around six billion baguettes are baked in France every year.</p>
             </div>
           </article>
-          <article class="rig-strip" id="peak" tabindex="0">
-            <video muted loop playsinline preload="none" data-src="media/rigs/peak/shots.mp4" poster="media/rigs/peak/shots.jpg"></video>
+          <article class="rig-strip" id="peak">
+            <div class="rig-media-track">
+              <div class="rig-media-pane is-active"><video muted loop playsinline preload="none" data-src="media/rigs/peak/shots.mp4" data-poster="media/rigs/peak/shots.jpg"></video></div>
+            </div>
             <div class="rig-strip-copy">
               <h3>PEAK</h3>
               <p>The end piece is called the quignon, and it rarely makes it home.</p>
@@ -3115,47 +3272,72 @@ body.detail-body{
 </main>
 
 <script>
-  // Lazy-load and play clips only while visible
-  const visible = new IntersectionObserver(entries => {
-    for (const { target: video, isIntersecting } of entries) {
-      if (isIntersecting) {
-        if (!video.getAttribute("src")) video.src = video.dataset.src;
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    }
-  }, { threshold: 0.2 });
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const strips = [...document.querySelectorAll(".rig-strip")];
+  const loadVideo = video => {
+    if (video.getAttribute("src")) return;
+    if (video.dataset.poster) video.poster = video.dataset.poster;
+    video.src = video.dataset.src;
+  };
 
-  for (const strip of strips) {
-    const video = strip.querySelector("video");
-    visible.observe(video);
-
-    const open = () => strips.forEach(other => other.classList.toggle("is-open", other === strip));
-    strip.addEventListener("click", open);
-    strip.addEventListener("keydown", event => {
-      if (event.target === strip && (event.key === "Enter" || event.key === " ")) {
-        event.preventDefault();
-        open();
-      }
+  const syncPlayback = strip => {
+    strip.querySelectorAll("video").forEach(video => {
+      const showing = strip.classList.contains("in-view") && video.closest(".rig-media-pane").classList.contains("is-active");
+      if (showing && !reduceMotion) video.play().catch(() => {});
+      else video.pause();
     });
+  };
 
-    // Clip buttons
-    for (const button of strip.querySelectorAll(".rig-clips button")) {
-      button.addEventListener("click", event => {
-        event.stopPropagation();
-        for (const other of button.parentElement.children) {
-          other.setAttribute("aria-pressed", String(other === button));
-        }
-        video.dataset.src = `${button.dataset.clip}.mp4`;
-        video.poster = `${button.dataset.clip}.jpg`;
-        video.src = video.dataset.src;
-        video.play().catch(() => {});
+  const stripObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const strip = entry.target;
+      strip.classList.toggle("in-view", entry.isIntersecting);
+      if (entry.isIntersecting) loadVideo(strip.querySelector(".rig-media-pane.is-active video"));
+      syncPlayback(strip);
+    });
+  }, { rootMargin:"200px 0px" });
+
+  document.querySelectorAll(".rig-strip").forEach(strip => {
+    const track = strip.querySelector(".rig-media-track");
+    const panes = [...strip.querySelectorAll(".rig-media-pane")];
+    const dots = [...strip.querySelectorAll(".rig-media-dots i")];
+    let index = 0;
+
+    const go = next => {
+      index = (next + panes.length) % panes.length;
+      track.style.transform = `translateX(${-index * 100}%)`;
+      panes.forEach((pane, i) => {
+        pane.classList.toggle("is-active", i === index);
+        pane.inert = i !== index;
+      });
+      dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+      const video = panes[index].querySelector("video");
+      video.currentTime = 0;
+      loadVideo(video);
+      syncPlayback(strip);
+    };
+
+    if (panes.length > 1) {
+      strip.querySelector(".rig-media-nav.prev").addEventListener("click", () => go(index - 1));
+      strip.querySelector(".rig-media-nav.next").addEventListener("click", () => go(index + 1));
+
+      let startX = null;
+      let startY = 0;
+      strip.addEventListener("touchstart", event => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive:true });
+      strip.addEventListener("touchend", event => {
+        if (startX === null) return;
+        const dx = event.changedTouches[0].clientX - startX;
+        const dy = event.changedTouches[0].clientY - startY;
+        startX = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
       });
     }
-  }
+
+    stripObserver.observe(strip);
+  });
 </script>
 
 </body>
